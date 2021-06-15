@@ -316,15 +316,12 @@ public class Dao {
 			PreparedStatement st = con.prepareStatement(new String(sql));
 			int index=1; //从第一个下标开始赋值
 			for(int i=0;i<values.size();i++) {
-				if(values.get(i)!=null) {
-					System.out.println(values.get(i));
-					if(fuzzyQuery) {
-						st.setObject(index, "%"+values.get(i)+"%");
-					}else {
-						st.setObject(index, values.get(i));
-					}
-					index++;
+				if(fuzzyQuery) {
+					st.setObject(index, "%"+values.get(i)+"%");
+				}else {
+					st.setObject(index, values.get(i));
 				}
+				index++;
 			}
 			ResultSet rs = st.executeQuery();
 			printExecuteSql(st); 
@@ -374,11 +371,10 @@ public class Dao {
 		Class<? extends Object> clazz = o.getClass();
 		Field fields[] = clazz.getDeclaredFields();
 		String tableName = getTableName(clazz);
-		int current = currentPage==1?0:currentPage;
 		//构造sql语句
 		StringBuffer sql = new StringBuffer("select * from "+tableName
 											+" limit "
-											+current*onePageNumber+","
+											+(currentPage-1)*onePageNumber+","
 											+onePageNumber);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		try {

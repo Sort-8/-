@@ -13,6 +13,17 @@ import java.util.regex.Pattern;
  *
  */
 public class StringUtil {
+	
+	private static String errorMsg = "成功";
+	
+	/**
+	 * 获取错误信息
+	 * @return
+	 */
+	public static String getErrorMsg() {
+		return errorMsg;
+	}
+	
 	/**
 	 * 从part对象中获取文件名
 	 * @param part
@@ -77,5 +88,25 @@ public class StringUtil {
 		Pattern pattern = Pattern.compile("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
 		Matcher isNum = pattern.matcher(str);
 		return isNum.matches();
+	}
+
+	/**
+	 * 将字符串分割做成Map<String,String>
+	 * @param paramName
+	 * @param paramValue
+	 * @return
+	 */
+	public static String[] getParmMap(String paramName,String parmValue) {
+		if(paramName==null||parmValue==null) {
+			errorMsg = "未获取到参数";
+			return null;
+		}
+		String[] parm = paramName.split(";");
+		String[] values = parmValue.split(";");
+		String[] res = new String[1];
+		for(int i=0;i<res.length;i++) {
+			
+		}
+		return res;
 	}
 }

@@ -1,8 +1,6 @@
 package com.service;
 
 import java.util.List;
-import java.util.Map;
-
 import com.entity.User;
 
 public interface UserService {
@@ -29,5 +27,5 @@ public interface UserService {
 	public List<User> getPageUser(User user, int currentPage, int onePageNumber);
 	
 	/*搜索用户*/
-	public List<User> searchUser(Map<String, String> paramMap, boolean flag);
+	public List<User> searchUser(String[] parmName,String[] value, boolean flag);
 }

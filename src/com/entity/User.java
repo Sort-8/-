@@ -15,7 +15,7 @@ public class User {
 	private int auth;
 	private String email;
 	private String sex;
-	private int create_time;
+	private long create_time;
 	public int getUser_id() {
 		return user_id;
 	}
@@ -64,10 +64,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getCreate_time() {
+	public long getCreate_time() {
 		return create_time;
 	}
-	public void setCreate_time(int create_time) {
+	public void setCreate_time(long create_time) {
 		this.create_time = create_time;
 	}
 	@Override
@@ -77,7 +77,7 @@ public class User {
 				+ create_time + "]";
 	}
 	public User(int role_id, String usr, String pwd, String name, String email,
-			String sex, int create_time) {
+			String sex, long create_time) {
 		super();
 		this.role_id = role_id;
 		this.usr = usr;

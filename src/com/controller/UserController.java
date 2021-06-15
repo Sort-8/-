@@ -134,7 +134,9 @@ public class UserController<T> extends HttpServlet {
 		}else if("searchUser".equals(method)) {  //搜索用户
 			String isfuzzyQuery = request.getParameter("isfuzzyQuery");
 			boolean flag = "1".equals(isfuzzyQuery);
-			List<User> list = userService.searchUser(paramMap,flag);
+			String[] parmName = request.getParameter("parmName").split(";");
+			String[] parmValue = request.getParameter("parmValue").split(";");
+			List<User> list = userService.searchUser(parmName,parmValue,flag);
 			if(list==null) {
 				String errorMsg = userService.getErrorMsg(); //查询失败
 				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
