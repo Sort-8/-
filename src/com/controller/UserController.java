@@ -141,6 +141,8 @@ public class UserController<T> extends HttpServlet {
 			}else {
 				ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
 			}
+		}else {
+			ajaxResult = ReturnResult.error(Constant.RESCODE_EXCEPTION, "未匹配任何方法");
 		}
 		ReturnResult.returnResult(ajaxResult, response.getWriter());
 	}
