@@ -14,10 +14,10 @@ public class Book {
 	private String press;
 	private int lend_num;
 	private int type_id;
-	private int create_by;
+	private String create_by;
 	private int number;
 	private int lend_stu;
-	private int create_time;
+	private long create_time;
 	public int getBook_id() {
 		return book_id;
 	}
@@ -60,10 +60,10 @@ public class Book {
 	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
-	public int getCreate_by() {
+	public String getCreate_by() {
 		return create_by;
 	}
-	public void setCreate_by(int create_by) {
+	public void setCreate_by(String create_by) {
 		this.create_by = create_by;
 	}
 	public int getNumber() {
@@ -78,10 +78,10 @@ public class Book {
 	public void setLend_stu(int lend_stu) {
 		this.lend_stu = lend_stu;
 	}
-	public int getCreate_time() {
+	public long getCreate_time() {
 		return create_time;
 	}
-	public void setCreate_time(int create_time) {
+	public void setCreate_time(long create_time) {
 		this.create_time = create_time;
 	}
 	@Override
@@ -91,7 +91,7 @@ public class Book {
 				+ number + ", lend_stu=" + lend_stu + ", create_time=" + create_time + "]";
 	}
 	public Book(int book_id, String code, String name, String author, String press, int lend_num, int type_id,
-			int create_by, int number, int lend_stu, int create_time) {
+			String create_by, int number, int lend_stu, long create_time) {
 		super();
 		this.book_id = book_id;
 		this.code = code;
