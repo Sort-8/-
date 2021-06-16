@@ -28,4 +28,7 @@ public interface UserService {
 	
 	/*搜索用户*/
 	public List<User> searchUser(String[] parmName,String[] value, boolean flag);
+	
+	/*获取所有用户*/
+	public List<User> getAllUser();
 }

@@ -84,7 +84,11 @@ public class UserController<T> extends HttpServlet {
 				}
 			}
 			
-		}else if("updateUser".equals(method)) {
+		}else if("getAllUser".equals(method)) {
+			List<User> list = userService.getAllUser();
+			ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
+		}
+		else if("updateUser".equals(method)) {
 			User user = new User();
 			user.setUsr(usr);
 			user = userService.findOneUser(user);

@@ -281,6 +281,16 @@ public class Dao {
 	}
 
 	/**
+	 * 查询表中所有数据
+	 * @param <T>
+	 * @param o
+	 * @return
+	 */
+	public <T> List<T> searchAll(Object o) {
+		return this.searchByConditions(o, new ArrayList<String>(), new ArrayList<String>());
+	}
+	
+	/**
 	 * 条件查询
 	 * @param <T>
 	 * @param o
@@ -288,8 +298,8 @@ public class Dao {
 	 * @param values
 	 * @return
 	 */
-	public <T> List<T> conditionQuery(Object o,List<String> parmName,List<String> values) {
-		if(parmName==null||values==null||parmName.size()==0||values.size()==0){
+	public <T> List<T> searchByConditions(Object o,List<String> parmName,List<String> values) {
+		if(parmName==null||values==null){
 			msg = "参数或值为空";
 			return null;
 		}
@@ -302,7 +312,7 @@ public class Dao {
 		Field fields[] = clazz.getDeclaredFields();
 		String tableName = getTableName(clazz);
 		//构造sql语句
-		StringBuffer sql = new StringBuffer("select * from "+tableName+" where ");
+		StringBuffer sql = new StringBuffer("select * from "+tableName+" where 1=1");
 		for(int i=0;i<values.size();i++) {
 			if(fuzzyQuery) {
 				sql.append(parmName.get(i)+" like ? and ");
@@ -310,7 +320,9 @@ public class Dao {
 				sql.append(parmName.get(i)+" = ? and ");
 			}
 		}
-		sql.delete(sql.lastIndexOf("and"),sql.length()-1);
+		if(values.size()!=0) {
+			sql.delete(sql.lastIndexOf("and"),sql.length()-1);
+		}
 		Connection con = ConnectionPool.getInstance().getConnection();
 		try {
 			PreparedStatement st = con.prepareStatement(new String(sql));

@@ -84,11 +84,16 @@ public class UserServiceImpl implements UserService {
 		Dao.instance();
 		List<User> list = Dao
 						.setfuzzyQuery(flag) //设置是否开启模糊搜索
-						.conditionQuery(new User(), parmList, valueList);
+						.searchByConditions(new User(), parmList, valueList);
 		if(list==null) { //查询不到
 			this.errorMsg = "查询失败";
 			return null;
 		}
 		return list;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		return Dao.instance().searchAll(new User());
 	}
 }
