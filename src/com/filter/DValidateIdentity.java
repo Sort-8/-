@@ -38,14 +38,11 @@ public class DValidateIdentity<T> implements Filter {
 			String method = request.getParameter("method");
 			HttpSession session = req.getSession(true);
 			System.out.println("用户身份验证：");
-			
-			if(user_id!=(int)session.getAttribute(sessionID)) {
+			if(session.getAttribute(sessionID)==null||user_id!=(int)session.getAttribute(sessionID)) {
 				session.invalidate();//销毁会话
 				ajaxResult = ReturnResult.error(Constant.RESCODE_LOGINEXPIRE, "会话已过期，请重新登录");
 				ReturnResult.returnResult(ajaxResult, response.getWriter());
-				System.out.println("user_id:"+user_id);
-				System.out.println("服务器存的user_id:"+session.getAttribute(sessionID));
-				System.out.println("不通过");
+				System.out.println("不通过，销毁当前会话");
 				return;
 			}else {
 				//刷新时间
