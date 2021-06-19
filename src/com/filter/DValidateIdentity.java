@@ -21,7 +21,7 @@ import com.vo.AjaxResult;
  *
  * @param <T>
  */
-@WebFilter(filterName="DValidateIdentity", urlPatterns = { "/user","/book","/limit" })
+@WebFilter(filterName="DValidateIdentity", urlPatterns = { "/limit" })
 public class DValidateIdentity<T> implements Filter {
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 	
@@ -47,6 +47,7 @@ public class DValidateIdentity<T> implements Filter {
 			}else {
 				//刷新时间
 				session.setMaxInactiveInterval(Constant.MaxImgCodeActiveTime);
+				System.out.println("刷新当前时间");
 				System.out.println("session key："+ Constant.ValidateCode+session.getId());
 				System.out.println("session value："+session.getValue(sessionID));
 				System.out.println("session有效期："+session.getMaxInactiveInterval());

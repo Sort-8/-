@@ -2,6 +2,8 @@ package com.util;
 
 import javax.servlet.http.Part;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,6 +86,11 @@ public class StringUtil {
 		return null;
 	}
 	
+	/**
+	 * 判断是否为纯数字，是返回true，否则返回false
+	 * @param str
+	 * @return
+	 */
 	public static boolean isNum(String str) {
 		Pattern pattern = Pattern.compile("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
 		Matcher isNum = pattern.matcher(str);
@@ -109,4 +116,17 @@ public class StringUtil {
 		}
 		return res;
 	}
+	
+	/**
+	 * 返回一个文件名
+	 * @return
+	 */
+	public static String getFileName() {
+		String fileType = ".xls";
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDDHHmmss");
+		String fileName = sdf.format(date) + StringUtil.getRandNum() + fileType;
+		return fileName;
+	}
+	
 }

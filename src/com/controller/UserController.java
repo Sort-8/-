@@ -1,29 +1,37 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.entity.Book;
 import com.entity.User;
+import com.service.BookService;
 import com.service.UserService;
+import com.service.impl.BookServiceImpl;
 import com.service.impl.UserServiceImpl;
 import com.util.Constant;
 import com.util.ReturnResult;
+import com.util.StringUtil;
+import com.util.WriteExcelFile;
 import com.vo.AjaxResult;
 
 @WebServlet("/user")
 public class UserController<T> extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserService userService = new UserServiceImpl();
+	BookService bookService = new BookServiceImpl();
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 	Map<String,String> paramMap = new HashMap<String,String>();
 	Map<String, Object> objMap = null;
@@ -33,12 +41,15 @@ public class UserController<T> extends HttpServlet {
 			String name = (String) pNames.nextElement();
 			String value = request.getParameter(name);
 			paramMap.put(name, value);
+			System.out.println(name+" "+value);
 		}
 		
 		String usr = request.getParameter("usr");
 		String pwd = request.getParameter("pwd");
 		String method = request.getParameter("method");
+		System.out.println(request.getParameter("data"));
 		HttpSession session = request.getSession(true);
+		//登录
 		if("login".equals(method)) {
 			String value = request.getParameter("imgCode");
 			String realValue = (String) session.getAttribute(Constant.ValidateCode+session.getId());
@@ -59,7 +70,7 @@ public class UserController<T> extends HttpServlet {
 					ajaxResult = ReturnResult.success(objMap, Constant.RESCODE_SUCCESS_MSG, 1);
 				}
 			}
-			
+		//注册或添加用户
 		}else if("register".equals(method) || "addUser".equals(method)) {
 			User user = new User();
 			user.setUsr(usr);
@@ -83,11 +94,12 @@ public class UserController<T> extends HttpServlet {
 					ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, result);
 				}
 			}
-			
+		//获取所有用户
 		}else if("getAllUser".equals(method)) {
-			List<User> list = userService.getAllUser();
+			List<User> list = userService.getAllUsers();
 			ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
 		}
+		//修改用户信息
 		else if("updateUser".equals(method)) {
 			User user = new User();
 			user.setUsr(usr);
@@ -112,7 +124,7 @@ public class UserController<T> extends HttpServlet {
 					ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, result);
 				}
 			}
-			
+		//删除用户
 		}else if("delUser".equals(method)) {
 			User user = new User();
 			user.setUser_id(Integer.valueOf(request.getParameter("del_user_id")));
@@ -123,8 +135,8 @@ public class UserController<T> extends HttpServlet {
 			}else {
 				ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, result);
 			}
-			
-		}else if("selectUser".equals(method)) {  //分页获取用户数据
+		//获取分页用户数据
+		}else if("selectUser".equals(method)) {  
 			int currentPage = Integer.valueOf(request.getParameter("currentPage")); //当前页数
 			int onePageNumber =Integer.valueOf(request.getParameter("onePageNumber"));   //每一页的数据量
 			List<User> list = userService.getPageUser(new User(),currentPage,onePageNumber);
@@ -134,13 +146,39 @@ public class UserController<T> extends HttpServlet {
 			}else {
 				ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
 			}
-			
-		}else if("searchUser".equals(method)) {  //搜索用户
+		//搜索用户
+		}else if("searchUser".equals(method)) { 
 			String isfuzzyQuery = request.getParameter("isfuzzyQuery");
 			boolean flag = "1".equals(isfuzzyQuery);
 			String[] parmName = request.getParameter("parmName").split(";");
 			String[] parmValue = request.getParameter("parmValue").split(";");
 			List<User> list = userService.searchUser(parmName,parmValue,flag);
+			if(list==null) {
+				String errorMsg = userService.getErrorMsg(); //查询失败
+				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
+			}else {
+				ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
+			}
+		//导出用户
+		}else if("exportUser".equals(method)) { 
+			String fileName = StringUtil.getFileName();
+			response.setHeader("Content-Type", "application/x-xls"); //发送一次请求
+			response.setHeader("Content-Disposition", "attachment;filename="+ fileName);
+			List<User> userList = userService.getAllUsers();
+			InputStream in = WriteExcelFile.writeExcel(userList);
+			ServletOutputStream out = response.getOutputStream();
+			int aRead=0;out.flush();
+			byte[] b= new byte[1024];
+			while ((aRead = in.read(b))!=-1 && in!=null) {
+				out.write(b,0,aRead);
+			}
+			out.flush();
+			in.close();
+			out.close();
+		//获取我的借阅信息
+		}else if("getMyLend".equals(method)) { 
+			String user_id = request.getParameter("user_id");
+			List<Book> list = bookService.getOneLend(user_id);
 			if(list==null) {
 				String errorMsg = userService.getErrorMsg(); //查询失败
 				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);

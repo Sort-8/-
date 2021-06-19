@@ -31,6 +31,7 @@ public class ReturnResult<T> extends AjaxResult<T>{
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.put("code",code);
 		ajaxResult.put("msg","成功");
+		ajaxResult.put("count", count);
 		ajaxResult.put("data",object);
         return ajaxResult;
     }

@@ -45,7 +45,7 @@ public class WriteExcelFile {
 				for(int j=0;j<values.length;j++) { //纵向写数据
 					HSSFCell cell = row.createCell(j);
 					try {
-						cell.setCellValue((double) values[j]);
+						cell.setCellValue(1*(double) values[j]);
 					}catch(Exception e) {
 						cell.setCellValue(values[j].toString());
 						e.printStackTrace();

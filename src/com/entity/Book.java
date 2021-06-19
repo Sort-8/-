@@ -14,9 +14,10 @@ public class Book {
 	private String press;
 	private int lend_num;
 	private int type_id;
-	private String create_by;
 	private int number;
 	private int lend_stu;
+	private String url;
+	private String create_by;
 	private long create_time;
 	public int getBook_id() {
 		return book_id;
@@ -60,12 +61,6 @@ public class Book {
 	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
-	public String getCreate_by() {
-		return create_by;
-	}
-	public void setCreate_by(String create_by) {
-		this.create_by = create_by;
-	}
 	public int getNumber() {
 		return number;
 	}
@@ -78,20 +73,26 @@ public class Book {
 	public void setLend_stu(int lend_stu) {
 		this.lend_stu = lend_stu;
 	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getCreate_by() {
+		return create_by;
+	}
+	public void setCreate_by(String create_by) {
+		this.create_by = create_by;
+	}
 	public long getCreate_time() {
 		return create_time;
 	}
 	public void setCreate_time(long create_time) {
 		this.create_time = create_time;
 	}
-	@Override
-	public String toString() {
-		return "Book [book_id=" + book_id + ", code=" + code + ", name=" + name + ", author=" + author + ", press="
-				+ press + ", lend_num=" + lend_num + ", type_id=" + type_id + ", create_by=" + create_by + ", number="
-				+ number + ", lend_stu=" + lend_stu + ", create_time=" + create_time + "]";
-	}
 	public Book(int book_id, String code, String name, String author, String press, int lend_num, int type_id,
-			String create_by, int number, int lend_stu, long create_time) {
+			int number, int lend_stu, String url, String create_by) {
 		super();
 		this.book_id = book_id;
 		this.code = code;
@@ -100,12 +101,13 @@ public class Book {
 		this.press = press;
 		this.lend_num = lend_num;
 		this.type_id = type_id;
-		this.create_by = create_by;
 		this.number = number;
 		this.lend_stu = lend_stu;
-		this.create_time = create_time;
+		this.url = url;
+		this.create_by = create_by;
 	}
 	public Book() {
 		super();
 	}
+	
 }

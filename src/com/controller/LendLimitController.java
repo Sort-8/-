@@ -43,8 +43,7 @@ public class LendLimitController<T> extends HttpServlet {
 		}else if("updateLimit".equals(method)) {
 			
 			
-		}else if("lookLimit".equals(method)) {
-			
+		}else if("selectLimit".equals(method)) {
 			
 		}
 	}

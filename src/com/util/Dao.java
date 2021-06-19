@@ -312,7 +312,7 @@ public class Dao {
 		Field fields[] = clazz.getDeclaredFields();
 		String tableName = getTableName(clazz);
 		//构造sql语句
-		StringBuffer sql = new StringBuffer("select * from "+tableName+" where 1=1");
+		StringBuffer sql = new StringBuffer("select * from "+tableName+" where 1=1 and ");
 		for(int i=0;i<values.size();i++) {
 			if(fuzzyQuery) {
 				sql.append(parmName.get(i)+" like ? and ");
@@ -320,9 +320,7 @@ public class Dao {
 				sql.append(parmName.get(i)+" = ? and ");
 			}
 		}
-		if(values.size()!=0) {
-			sql.delete(sql.lastIndexOf("and"),sql.length()-1);
-		}
+		sql.delete(sql.lastIndexOf("and"),sql.length()-1);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		try {
 			PreparedStatement st = con.prepareStatement(new String(sql));
@@ -335,8 +333,9 @@ public class Dao {
 				}
 				index++;
 			}
-			ResultSet rs = st.executeQuery();
 			printExecuteSql(st); 
+			ResultSet rs = st.executeQuery();
+			
 			ResultSetMetaData rsmd = rs.getMetaData(); //获取结果集的元数据
 			int columns = rsmd.getColumnCount(); //获取表列数
 			while(rs.next()) {

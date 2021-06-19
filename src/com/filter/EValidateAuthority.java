@@ -24,7 +24,7 @@ import com.vo.AjaxResult;
  *
  * @param <T>
  */
-@WebFilter(filterName="EValidateAuthority", urlPatterns = { "/user","/book","/limit" })
+@WebFilter(filterName="EValidateAuthority", urlPatterns = { "/limit" })
 public class EValidateAuthority<T> implements Filter {
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 

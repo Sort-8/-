@@ -42,9 +42,9 @@ public class Constant {
 	/**
 	 * 验证码配置
 	 */
-	public static int MaxImgCodeActiveTime = 600; 	//验证码有效期：600秒
-	public static int Imgwidth = 100; 				//图片宽度
-	public static int ImgHeight = 200; 				//图片高度
+	public static int MaxImgCodeActiveTime = 60000; 	//验证码有效期：600秒
+	public static int Imgwidth = 40; 				//图片宽度
+	public static int ImgHeight = 100; 				//图片高度
 	public static int CodeCount = 4; 				//验证码字符数
 	public static int LineWidth = 4; 				//干扰线宽度
 	public static int ValidateCode = 1;				//验证码标识
