@@ -152,7 +152,6 @@ public class Dao {
 		StringBuffer sql = new StringBuffer("delete from "+tableName+" where ");
 		sql.append(fields[0].getName());
 		sql.append("=?");
-		System.out.println(sql);
 		Method getter[] = getGetMethod(clazz);
 		Object res[] = inokeMethod(o, getter, null);
 		Connection con = ConnectionPool.getInstance().getConnection();

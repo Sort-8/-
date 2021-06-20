@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.util.Constant;
-import com.util.ValidateCodeUtil;
-
+import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ShearCaptcha;
 
 /**
@@ -31,7 +30,10 @@ public class ImgCodeFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		ShearCaptcha captcha = ValidateCodeUtil.getValidateCode();
+		ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(Constant.ImgHeight,  //图片高度
+															  Constant.Imgwidth,   //图片宽带
+															  Constant.CodeCount,  //验证码字符数
+															  Constant.LineWidth); //干扰线宽度
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession(true);
 		String key = Constant.ValidateCode + session.getId();

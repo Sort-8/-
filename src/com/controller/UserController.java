@@ -41,7 +41,7 @@ public class UserController<T> extends HttpServlet {
 			String name = (String) pNames.nextElement();
 			String value = request.getParameter(name);
 			paramMap.put(name, value);
-			System.out.println(name+" "+value);
+//			System.out.println(name+" "+value);
 		}
 		
 		String usr = request.getParameter("usr");
@@ -175,16 +175,9 @@ public class UserController<T> extends HttpServlet {
 			out.flush();
 			in.close();
 			out.close();
-		//获取我的借阅信息
-		}else if("getMyLend".equals(method)) { 
-			String user_id = request.getParameter("user_id");
-			List<Book> list = bookService.getOneLend(user_id);
-			if(list==null) {
-				String errorMsg = userService.getErrorMsg(); //查询失败
-				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
-			}else {
-				ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
-			}
+		
+		}else if("exportUser".equals(method)) {
+			
 		}else {
 			ajaxResult = ReturnResult.error(Constant.RESCODE_EXCEPTION, "未匹配任何方法");
 		}

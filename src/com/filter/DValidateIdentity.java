@@ -35,7 +35,6 @@ public class DValidateIdentity<T> implements Filter {
 		if(request.getParameter("user_id")!=null) {
 			user_id = Integer.valueOf(request.getParameter("user_id"));
 			String sessionID = request.getParameter("sessionID");
-			String method = request.getParameter("method");
 			HttpSession session = req.getSession(true);
 			System.out.println("用户身份验证：");
 			if(session.getAttribute(sessionID)==null||user_id!=(int)session.getAttribute(sessionID)) {
