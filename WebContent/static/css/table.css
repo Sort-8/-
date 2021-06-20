@@ -1,0 +1,10 @@
+/*设置数据表表头*/
+.layui-table th {
+	text-align: center;
+	/*表头居中*/
+}
+
+.layui-table td {
+	text-align: center;
+	/*表格数据居中*/
+}

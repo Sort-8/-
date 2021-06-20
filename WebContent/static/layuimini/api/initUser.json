@@ -1,0 +1,42 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "public/bookList.jsp?t=0"
+  },
+  "logoInfo": {
+    "title": "图书管理系统",
+    "image": "static/layuimini/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "个人中心",
+          "href": "public/baseInfo.jsp",
+          "icon": "fa fa-user",
+          "target": "_self",
+          "child": []
+        },
+        {
+          "title": "借阅图书",
+          "href": "public/bookList.jsp?t=0",
+          "icon": "fa fa-book",
+          "target": "_self",
+          "child": []
+        },
+        {
+          "title": "归还图书",
+          "href": "user/return.jsp",
+          "icon": "fa fa-stack-overflow",
+          "target": "_self",
+          "child": []
+        }
+        ]
+      }
+    ]
+}
