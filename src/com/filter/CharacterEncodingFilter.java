@@ -16,7 +16,7 @@ import com.util.Constant;
  * @author Administrator
  *
  */
-@WebFilter(filterName="CharacterEncodingFilter", urlPatterns = { "/user","/book","/record" })
+@WebFilter(filterName="CharacterEncodingFilter", urlPatterns = { "/user","/book","/record","/limit","/type" })
 public class CharacterEncodingFilter implements Filter {
     public CharacterEncodingFilter() {}
 
