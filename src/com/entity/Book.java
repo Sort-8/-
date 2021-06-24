@@ -14,6 +14,7 @@ public class Book {
 	private String press;
 	private int lend_num;
 	private int type_id;
+	private int borrow_num;
 	private int number;
 	private int lend_stu;
 	private String url;
@@ -61,6 +62,12 @@ public class Book {
 	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
+	public int getBorrow_num() {
+		return borrow_num;
+	}
+	public void setBorrow_num(int borrow_num) {
+		this.borrow_num = borrow_num;
+	}
 	public int getNumber() {
 		return number;
 	}
@@ -92,7 +99,7 @@ public class Book {
 		this.create_time = create_time;
 	}
 	public Book(int book_id, String code, String name, String author, String press, int lend_num, int type_id,
-			int number, int lend_stu, String url, String create_by) {
+			 int number, int lend_stu, String url, String create_by) {
 		super();
 		this.book_id = book_id;
 		this.code = code;
@@ -109,5 +116,11 @@ public class Book {
 	public Book() {
 		super();
 	}
-	
+	@Override
+	public String toString() {
+		return "Book [book_id=" + book_id + ", code=" + code + ", name=" + name + ", author=" + author + ", press="
+				+ press + ", lend_num=" + lend_num + ", type_id=" + type_id + ", borrow_num=" + borrow_num + ", number="
+				+ number + ", lend_stu=" + lend_stu + ", url=" + url + ", create_by=" + create_by + ", create_time="
+				+ create_time + "]";
+	}
 }
