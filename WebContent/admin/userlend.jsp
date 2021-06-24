@@ -4,11 +4,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../static/layui/css/layui.css">
+	<link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
 	<link rel="stylesheet" href="../static/css/table.css">
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://www.layuicdn.com/layui-v2.5.6/layui.js" type="text/javascript"></script>
-	<script src="../static/layui/layui.js" type="text/javascript"></script>
 	<script src="../static/js/router.js" charset="utf-8"></script>
 	<script src="../static/js/time.js" charset="utf-8"></script>
 	<title>读者借阅记录</title>
@@ -67,7 +66,7 @@
 		    ,toolbar: '#headBar'
 		    ,cols: [[
 		      {type:'checkbox'}
-		      ,{field:'card_id', width:180, title: '借阅号',  }
+		      ,{field:'user_id', width:180, title: '帐号',  }
 		      ,{field:'record_type', width:100, title: '类型',templet: function (d){
 		    	  if(d.record_type==1)
 		    		  return '<div style="color:red;">借阅</div>';

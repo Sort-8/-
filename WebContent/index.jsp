@@ -6,13 +6,16 @@
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="bookmark"href="favicon.ico" />
-    <link rel="icon" href="favicon.ico">
-    <link rel="shortcut icon" href="favicon.ico" />
-	<link rel="bookmark"href="favicon.ico" />
-    <link rel="stylesheet" href="static/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css" media="all">
     <link rel="stylesheet" href="static/layuimini/css/layuimini.css" media="all">
     <link rel="stylesheet" href="static/layuimini/css/themes/default.css" media="all">
     <link rel="stylesheet" href="static/layuimini/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+	
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+	<script src="https://www.layuicdn.com/layui-v2.5.6/layui.js" charset="utf-8"></script>
+	<script src="static/layuimini/js/lay-config.js" charset="utf-8"></script>
+	<script src="static/js/router.js" charset="utf-8"></script>
+	<script src="static/js/index.js" charset="utf-8"></script>
 	<title>首页</title>
 </head>
 <body class="layui-layout-body layuimini-all">
@@ -89,10 +92,5 @@
 	        </div>
 	    </div>
 	</div>
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
-	<script src="static/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-	<script src="static/layuimini/js/lay-config.js" charset="utf-8"></script>
-	<script src="static/js/router.js" charset="utf-8"></script>
-	<script src="static/js/index.js" charset="utf-8"></script>
 </body>
 </html>

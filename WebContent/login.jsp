@@ -5,11 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" href="static/layui/css/layui.css">
-    <link rel="stylesheet" href="static/css/login.css">
     <link rel="shortcut icon" href="favicon.ico" />
 	<link rel="bookmark"href="favicon.ico" />
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
+    <link rel="stylesheet" href="static/css/login.css">
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="https://www.layuicdn.com/layui-v2.5.6/layui.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="wrap">
@@ -61,7 +62,6 @@
             </form>
         </div>
     </div>
-    <script src="static/layui/layui.js" type="text/javascript"></script>
     <script src="static/js/router.js" charset="utf-8"></script>
     <script src="static/js/login.js" type="text/javascript"></script>
 	
