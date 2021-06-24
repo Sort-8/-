@@ -1,0 +1,15 @@
+.layui-input{
+	width:180px
+}
+.file-btn{
+	width:150px;
+	padding: 5px;
+}
+.layui-form-select{
+	width:180px;
+}
+#preview_img{
+	width:80px;
+	height:80px;
+	display: none; 
+}
