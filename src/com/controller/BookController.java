@@ -38,10 +38,9 @@ public class BookController<T> extends HttpServlet {
 	Map<String, Object> objMap = null;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//获取方法
-		
 		String method = request.getParameter("method");
 		String book_id = request.getParameter("book_id");
-		System.out.println(method);
+		String user_id = request.getParameter("user_id");
 		if("getAllBook".equals(method)) {  //获取全部数据
 			List<Book> list = bookService.getAllBooks();
 			ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
@@ -57,7 +56,21 @@ public class BookController<T> extends HttpServlet {
 			}
 			
 		}else if("lendBook".equals(method)) {  //借书
-			
+			int res = bookService.lendBook(user_id,book_id);
+			if(res==-1) {
+				String errorMsg = bookService.getErrorMsg(); //查询失败
+				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
+			}else {
+				ajaxResult = ReturnResult.success(res, Constant.RESCODE_SUCCESS, 1);
+			}
+		}else if("returnBook".equals(method)) {  //借书
+			int res = bookService.returnBook(user_id,book_id);
+			if(res==-1) {
+				String errorMsg = bookService.getErrorMsg(); //查询失败
+				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
+			}else {
+				ajaxResult = ReturnResult.success(res, Constant.RESCODE_SUCCESS, 1);
+			}
 		}else if("importBook".equals(method)) {  //导入图书信息
 			Part part = request.getPart("filePath");
 		}else if("getTemplate".equals(method)) {  //下载图书信息模板
@@ -77,14 +90,11 @@ public class BookController<T> extends HttpServlet {
 			out.flush();
 			in.close();
 			out.close();
-		}else if("getBookType".equals(method)) {  //获取图书类别
-			List<Book_type> typeList = bookService.getBookType();
-			ajaxResult = ReturnResult.success(typeList, Constant.RESCODE_SUCCESS, typeList.size());
 		}else if("addBook".equals(method)) {  //添加图书信息
 			User user = new User();
 			user.setUser_id(Integer.valueOf(request.getParameter("user_id")));
 			List<User> list = Dao.instance().selectOne(user);
-			Book book = new Book(Integer.valueOf(book_id),
+			Book book = new Book(0,
 								request.getParameter("code"),
 								request.getParameter("name"),
 								request.getParameter("author"),
@@ -92,7 +102,7 @@ public class BookController<T> extends HttpServlet {
 								Integer.valueOf(request.getParameter("lend_num")),
 								Integer.valueOf(request.getParameter("type_id")),
 								Integer.valueOf(request.getParameter("number")),
-								Integer.valueOf(request.getParameter("lend_stu")),
+								1,
 								request.getParameter("url"),
 								list.get(0).getName()
 							);
@@ -126,8 +136,8 @@ public class BookController<T> extends HttpServlet {
 			}
 			
 		}else if("searchBook".equals(method)) {  //搜索图书信息
-			String isfuzzyQuery = request.getParameter("isfuzzyQuery");
-			boolean flag = "1".equals(isfuzzyQuery);
+			String isFuzzyQuery = request.getParameter("isFuzzyQuery");
+			boolean flag = "1".equals(isFuzzyQuery);
 			String[] parmName = request.getParameter("parmName").split(";");
 			String[] parmValue = request.getParameter("parmValue").split(";");
 			List<Book> list = bookService.searchBook(parmName,parmValue,flag);
@@ -137,13 +147,21 @@ public class BookController<T> extends HttpServlet {
 			}else {
 				ajaxResult = ReturnResult.success(list, Constant.RESCODE_SUCCESS, list.size());
 			}
+			
 		}else if("delBook".equals(method)) {  //删除图书信息
 			Book book = new Book();
 			book.setBook_id(Integer.valueOf(book_id));
 			int result = bookService.delBook(book);
+			if(result==0) {
+				String errorMsg = bookService.getErrorMsg(); //删除失败
+				ajaxResult = ReturnResult.error(Constant.RESCODE_DELETEERROR, errorMsg);
+			}else {
+				ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, result);
+			}
 		}else {
 			ajaxResult = ReturnResult.error(Constant.RESCODE_EXCEPTION, "未匹配任何方法");
 		}
+		
 		ReturnResult.returnResult(ajaxResult, response.getWriter());
 	}
 

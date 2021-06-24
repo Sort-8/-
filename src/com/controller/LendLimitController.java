@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import com.service.LendLimitService;
 import com.service.impl.LendLimitServiceImpl;
+import com.util.Constant;
+import com.util.ReturnResult;
 import com.vo.AjaxResult;
 import com.entity.Lend_limit;
 
@@ -39,18 +41,21 @@ public class LendLimitController<T> extends HttpServlet {
 		
 		String method = request.getParameter("method");
 		String role_id = request.getParameter("role_id");
+		String user_id = request.getParameter("user_id");
 		System.out.println();
 		HttpSession session = request.getSession(true);
 		
-		if("addLimit".equals(method)) {
-			
+		if("getIsLimit".equals(method)) {
+			int falg = lendLimitService.getIsLimit(user_id);
+			ajaxResult = ReturnResult.success(falg, Constant.RESCODE_SUCCESS, 1);
 		}else if("updateLimit".equals(method)) {
 			
 			
 		}else if("searchLimit".equals(method)) {
 			List<Lend_limit> list = lendLimitService.searchLimit(Integer.valueOf("role_id")) ;
-			
 		}
+		
+		ReturnResult.returnResult(ajaxResult, response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
