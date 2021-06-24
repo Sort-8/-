@@ -65,9 +65,25 @@ public class WriteExcelFile {
 		return in;
 	}
 	
-	public static <T> InputStream writeTemplateExcel(List<T> result) {
-		return null;
-		
+	public static InputStream writeTemplateExcel(List<String> result) {
+		wb = new HSSFWorkbook();
+		String name = StringUtil.getFileName();
+		HSSFSheet sheet =  wb.createSheet(name); //创建Excel文件表
+		//设置表头
+		HSSFRow rowHeader = sheet.createRow(0); 
+		for(int i=0; i<result.size(); i++) {
+			rowHeader.createCell(i).setCellValue(result.get(i));
+		}
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			wb.write(bos);
+		} catch (IOException e) {
+			msg="HSSFWorkbook对象写入到输出流发生异常";
+			return null;
+		}
+		byte[] brray = bos.toByteArray();
+		InputStream in = new ByteArrayInputStream(brray);
+		return in;
 	}
 	
 	/**

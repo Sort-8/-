@@ -38,7 +38,7 @@ public class ReadExcelFile<T> {
 	 * @param fileName
 	 * @return
 	 */
-	public static List<Map> getExcelInfo(InputStream io,String fileName){
+	public static List<Map> getExcelInfo(InputStream io,String fileName ){
 		if(!validateExcel(fileName)) { //验证Excel文件
 			return null;
 		}

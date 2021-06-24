@@ -28,4 +28,8 @@ public interface BookService {
 
 	public List<Book> getAllLend();
 
+	public int lendBook(String user_id, String book_id);
+
+	public int returnBook(String user_id, String book_id);
+
 }
