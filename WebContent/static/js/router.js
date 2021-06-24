@@ -1,12 +1,7 @@
 /**
  * 路由
  */
-layui.config({
-    base: '../static/layui/lay/extend/'
-}).extend({
-    notice: 'notice'
-});
-
+ 
  //获取项目路径
 var projectPath = "http://localhost:8080/library-management";
 function getProjectPath(){
@@ -17,4 +12,3 @@ function getProjectPath(){
 function getUser(){
 	return JSON.parse(localStorage.user); 
 }
-

@@ -65,7 +65,7 @@ function login() {
                 if (data.code == 1001){ //登录成功
                 	localStorage.user = JSON.stringify(data.data.obj);
                 	localStorage.sessionID = data.data.sessionID;
-                	localStorage.username = data.data.obj.usr;
+                	localStorage.auth = data.data.obj.auth;
                 	window.location.href = 'index.jsp';
                 }else if(data.code==1011){
                 	layer.msg("验证码不匹配", {icon: 2,time: 1000});

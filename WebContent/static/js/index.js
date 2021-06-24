@@ -11,6 +11,7 @@ $(function () {
 	
 })
 layui.use(['jquery', 'layer', 'miniAdmin','miniTongji'], function () {
+	
     var $ = layui.jquery,
         layer = layui.layer,
         miniAdmin = layui.miniAdmin,
