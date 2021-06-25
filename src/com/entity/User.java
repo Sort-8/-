@@ -77,7 +77,7 @@ public class User {
 				+ create_time + "]";
 	}
 	public User(int role_id, String usr, String pwd, String name, String email,
-			String sex, long create_time) {
+			String sex,int auth, long create_time) {
 		super();
 		this.role_id = role_id;
 		this.usr = usr;
@@ -85,6 +85,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.sex = sex;
+		this.auth = auth;
 		this.create_time = create_time;
 	}
 	public User() {

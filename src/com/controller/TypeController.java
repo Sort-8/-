@@ -28,6 +28,7 @@ public class TypeController<T> extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//获取方法
 		String method = request.getParameter("method");
+		
 		//获取全部图书类型
 		if("getAllType".equals(method)) {  
 			List<Book_type> typeList = typeService.getAllType();

@@ -22,6 +22,7 @@ import java.util.Map;
 public class Dao {
 	private static final Dao dao = new Dao();
 	private static boolean fuzzyQuery = false; //默认不开启模糊搜索
+	private static boolean time = false; //默认不开启降序
 	private String msg = "插入成功";
 	public Dao() {}
 	
@@ -37,8 +38,9 @@ public class Dao {
 	 * 开启模糊搜索
 	 * @param flag
 	 */
-	public static Dao setfuzzyQuery(boolean flag) {
+	public static Dao setfuzzyQuery(boolean flag,boolean tim) {
 		fuzzyQuery = flag;
+		time = tim;
 		return dao;
 	}
 	
@@ -319,7 +321,11 @@ public class Dao {
 				sql.append(parmName.get(i)+" = ? and ");
 			}
 		}
+		 
 		sql.delete(sql.lastIndexOf("and"),sql.length()-1);
+		if(time)
+			sql.append("order by create_time desc");
+		time=false;
 		Connection con = ConnectionPool.getInstance().getConnection();
 		try {
 			PreparedStatement st = con.prepareStatement(new String(sql));
@@ -504,4 +510,5 @@ public class Dao {
 		}
 		return methods;
 	}
+
 }

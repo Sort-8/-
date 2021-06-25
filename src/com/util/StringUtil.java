@@ -4,6 +4,8 @@ import javax.servlet.http.Part;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -129,4 +131,32 @@ public class StringUtil {
 		return fileName;
 	}
 	
+	/**
+	 * 获取图书map
+	 * @return
+	 */
+	public static Map<String,String> getBookMap() {
+		Map<String,String> mapName = new HashMap<String,String>();
+		mapName.put("IBSN", "code");
+		mapName.put("图书名称", "name");
+		mapName.put("作者", "author");
+		mapName.put("出版社", "press");
+		mapName.put("馆藏", "number");
+		mapName.put("图片地址", "url");
+		return mapName;
+	}
+	
+	/**
+	 * 获取用户map
+	 * @return
+	 */
+	public static Map<String,String> getUserMap() {
+		Map<String,String> mapName = new HashMap<String,String>();
+		mapName.put("帐号", "usr");
+		mapName.put("密码", "pwd");
+		mapName.put("用户名", "name");
+		mapName.put("邮箱", "email");
+		mapName.put("性别", "sex");
+		return mapName;
+	}
 }

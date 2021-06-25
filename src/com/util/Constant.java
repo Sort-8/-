@@ -1,5 +1,10 @@
 package com.util;
 
+/**
+ * 工具类
+ * @author 庞海
+ *
+ */
 public class Constant {
 	
 	/**

@@ -12,7 +12,7 @@ public class Book_record {
 	private int record_type;
 	private int book_id;
 	private String book_name;
-	private long record_time;
+	private long create_time;
 	public int getRecord_id() {
 		return record_id;
 	}
@@ -43,20 +43,20 @@ public class Book_record {
 	public void setBook_name(String book_name) {
 		this.book_name = book_name;
 	}
-	public long getRecord_time() {
-		return record_time;
+	public long getCreate_time() {
+		return create_time;
 	}
-	public void setRecord_time(long record_time) {
-		this.record_time = record_time;
+	public void setCreate_time(long create_time) {
+		this.create_time = create_time;
 	}
-	public Book_record(int record_id, int user_id, int record_type, int book_id, String book_name, long record_time) {
+	public Book_record(int record_id, int user_id, int record_type, int book_id, String book_name, long create_time) {
 		super();
 		this.record_id = record_id;
 		this.user_id = user_id;
 		this.record_type = record_type;
 		this.book_id = book_id;
 		this.book_name = book_name;
-		this.record_time = record_time;
+		this.create_time = create_time;
 	}
 	public Book_record() {
 		super();
@@ -64,6 +64,6 @@ public class Book_record {
 	@Override
 	public String toString() {
 		return "Book_record [record_id=" + record_id + ", user_id=" + user_id + ", record_type=" + record_type
-				+ ", book_id=" + book_id + ", book_name=" + book_name + ", record_time=" + record_time + "]";
+				+ ", book_id=" + book_id + ", book_name=" + book_name + ", create_time=" + create_time + "]";
 	}
 }

@@ -7,6 +7,11 @@ import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Cell;
 
+/**
+ * 时间工具类
+ * @author 庞海
+ *
+ */
 public class DateUtil {
 
 	public static boolean isCellDateFormatted(Cell cell) {

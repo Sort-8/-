@@ -16,8 +16,7 @@
 <body>
 	<div id="add_div" style="margin: 8%; ">
 		<form class="layui-form layui-form-pane" method="post" id="add_form">
-			<input type="text" name="book_id" value="0" class="layui-hide">
-			<input type="text" name="lend_stu" value="1" class="layui-hide">
+			<input type="text" name="book_id" id="book_id" value="0" class="layui-hide">
 			<input type="text" name="url" id="url" value="" class="layui-hide">
 			
 			<!-- 图书名称 -->
@@ -84,13 +83,6 @@
 			    </div>
 		  	</div>
 		    
-		    <!-- 提交重置 -->
-			<div class="layui-form-item">
-			    <div class="layui-input-block">
-			      <button type="button" class="layui-btn" lay-filter="bookForm">立即提交</button>
-			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-			    </div>
-		  	</div>
 		</form>
 	</div>
 </body>

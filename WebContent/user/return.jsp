@@ -26,25 +26,36 @@
 		&nbsp;
 		图书名称：
   		<div class="layui-inline">
-    		<input class="layui-input" id="conditionValue" name="conditionValue" id="demoReload" autocomplete="off">
+    		<input class="layui-input" id="conditionValue" name="conditionValue" style="width:150px">
   		</div>
+		&nbsp;
   		<button class="layui-btn" name="condition" data-type="reload"  lay-event="search">搜索</button>
-		<div id=""></div>
+	
 	</script>
 	
+	<!-- 
 	<script type="text/html" id="barDemo">
         {{#  if(d.record_type == 1){ }}
         	<a class="layui-btn layui-btn-xs" lay-event="return_book">还书</a>
         {{#  } }}
 	</script>
-	
+	 -->
+	 
 	<script type="text/javascript">
 	  var that = this;
 	  var projectPath = getProjectPath();
 	  var user = getUser(); 
-	  layui.use(['table','jquery'], function(){
+	  layui.use(['table','jquery','laydate'], function(){
 		  $ = layui.jquery;
 		  var table = layui.table;
+		  var laydate = layui.laydate;
+		  
+		  //日期时间范围
+		  laydate.render({
+		    elem: '#time'
+		    ,type: 'datetime'
+		    ,range: true
+		  }); 
 		  // 进行渲染
 		  var tableIns = tableRender(table);
 		  
@@ -117,56 +128,19 @@
 	</script>
 	
 	<script type="text/javascript">
-		//侧边工具栏事件
-		function sideToolbar(table){
-			table.on(('tool(formFilter)'), function (obj) {
-				var data = obj.data;
-				var layEvent = obj.event;
-				var tr = obj.tr;
-				switch (obj.event) {
-					case 'return_book':
-						returnBook(data);
-						break;
-				}
-			})
-		}
-		
-		//归还图书
-		function returnBook(data){
-			layer.confirm('确定归还吗？', {
-				title: '归还'
-			}, function(index) {
-				$.ajax({
-					type: 'post',
-					url:projectPath+'/book',
-					data: {
-						"method":"returnBook",
-						"user_id":user.user_id,
-						"sessionID":localStorage.sessionID,
-						"book_id":data.book_id,
-					},
-					success: function(res) {
-						console.log(res)
-						if (res.code == 1000) {
-							layer.msg("归还成功");
-						} else {
-							
-						}
-						table.reload('cardTable', {})
-					}
-				})
-				layer.close(index);
-			});			
-		}
-		
-	</script>
-	
-	<script type="text/javascript">
 		//头部工具栏事件
 		function headerToolbar(table){
 			
 		}
 	</script>
+	
+	<script type="text/javascript">
+		//侧边工具栏事件
+		function sideToolbar(table){
+			
+		}
+	</script>
+	
 	
 </body>
 </html>

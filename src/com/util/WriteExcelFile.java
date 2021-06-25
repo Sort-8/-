@@ -44,11 +44,24 @@ public class WriteExcelFile {
 				Object values[] = inokeMethod(result.get(i), getters, null);
 				for(int j=0;j<values.length;j++) { //纵向写数据
 					HSSFCell cell = row.createCell(j);
-					try {
-						cell.setCellValue(1*(double) values[j]);
+					String res = null;
+					int t = -1;
+					long l = -1;
+					try{
+						res = (String) values[j];
 					}catch(Exception e) {
-						cell.setCellValue(values[j].toString());
-						e.printStackTrace();
+						try {
+							t = (int) values[j];
+						}catch(Exception e1) {
+							l = (long) values[j];
+						}
+					}
+					if(res!=null) {
+						cell.setCellValue(res);
+					}else if(t!=-1) {
+						cell.setCellValue(t);
+					}else {
+						cell.setCellValue(l);
 					}
 				}
 			}

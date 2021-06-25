@@ -35,11 +35,17 @@
 	                </li>
 	            </ul>
 	            <ul class="layui-nav layui-layout-right" style="margin-left: 50px;">
+	            	<li class="layui-nav-item" lay-unselect>
+	                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
+	                </li>
+	                <li class="layui-nav-item" lay-unselect>
+	                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
+	                </li>
 	                <li class="layui-nav-item layuimini-setting"style="margin-left: 50px; ">
 	                    <a  href="javascript:;"><span id="username">用户</span></a>
 	                    <dl class="layui-nav-child">
 	                        <dd>
-	                            <a href="javascript:;" layuimini-content-href="user/baseInfo.jsp" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+	                            <a href="javascript:;" layuimini-content-href="public/baseInfo.jsp" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
 	                        </dd>
 	                        <dd>
 	                            <hr>

@@ -52,11 +52,14 @@
 		<%}%>
 
 	</script>
-		<!-- 操作按钮 -->
-		<script type="text/html" id="barDemo">
+	<!-- 操作按钮 -->
+	<script type="text/html" id="barDemo">
 		<a class="layui-btn layui-btn-xs" lay-event="details">详情</a>
 		{{#  if(d.borrow_num >= 1){ }}
-			<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="lend">借阅</a>
+			<!-- 用户页面-->
+			<%if("0".equals(request.getParameter("t"))){%>
+				<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="lend">借阅</a>
+			<%}%>
 		{{#  } }}
 		<!-- 管理员页面-->
 		<%if("1".equals(request.getParameter("t"))){%>
@@ -240,6 +243,8 @@
 							
 						}
 						table.reload('cardTable', {})
+						document.getElementById('return.jsp').contentWindow.location.reload();
+						document.getElementById('baseInfo.jsp').contentWindow.location.reload();
 					}
 				})
 				layer.close(index);
@@ -276,7 +281,7 @@
 	</script>
 	
 	<script type="text/javascript">
-	
+		
 		//头部工具栏事件
 		function headerToolbar(table){
 			table.on('toolbar(formFilter)', function (obj) {
@@ -300,10 +305,19 @@
 							type: 2,
 							title: '添加图书',
 							area: ['530px', '580px'],
+							btn: ['添加', '取消'],
 							maxmin: true,
 							shadeClose: true,
-							content: 'editBook.jsp',
+							content: 'editBook.jsp?t=1',
+							yes : function(index,layero){
+								var body=layer.getChildFrame('body',index);
+								confirmAddBook(body);
+								layer.msg("添加成功", {icon: 1,time: 2000});
+								layer.close(index);
+								table.reload('cardTable', {})
+							}
 						});
+						
 						break;
 					case 'updateBook':
 						if(validate(checkStatus.data)==0){
@@ -313,13 +327,21 @@
 								type: 2,
 								title: '修改图书',
 								area: ['530px', '580px'],
+								btn: ['修改', '取消'],
 								maxmin: true,
 								shadeClose: true,
-								content: 'editBook.jsp',
+								content: 'editBook.jsp?t=0',
 								success: function(layero, index) {
 									var body=layer.getChildFrame('body',index);
 									valuation(body,list);
 								},
+								yes : function(index,layero){
+									var body=layer.getChildFrame('body',index);
+									confirmUpdateBook(body);
+									layer.msg("修改成功", {icon: 1,time: 2000});
+									layer.close(index);
+									table.reload('cardTable', {})
+								}
 							});
 						}
 						break;
@@ -332,11 +354,27 @@
 							shadeClose: true,
 							content: 'import.jsp',
 							success: function(layero, index) {
-								
-							},
+								layer.msg("导入成功", {icon: 1,time: 2000});
+								layer.close(index);
+								table.reload('cardTable', {})
+							}
 						});
 						break;
 					case 'exportBook':
+						$.ajax({
+							type:'post',
+							url:projectPath+'/book',
+							data:{
+								"method":"exportBook",
+								"user_id":user.user_id,
+								"sessionID":localStorage.sessionID,
+							},
+							success:function(res){
+								layer.msg("导出成功", {icon: 1,time: 2000});
+								layer.close(index);
+								table.reload('cardTable', {})
+							}
+						})
 						break;
 				};
 			});
@@ -389,8 +427,69 @@
 				body.contents().find("#author").val(list[0].author);
 				body.contents().find("#press").val(list[0].press);
 				body.contents().find("#number").val(list[0].number);
+				body.contents().find("#book_id").val(list[0].book_id);
 				form.render();
 			});
+		}
+		
+		function confirmUpdateBook(body){
+			var book_id = body.contents().find("#book_id").val();
+			var name = body.contents().find("#name").val();
+			var url = body.contents().find("#url").val();
+			var code = body.contents().find("#code").val();
+			var type_id = body.contents().find("#sel").val();
+			var author = body.contents().find("#author").val();
+			var press = body.contents().find("#press").val();
+			var number = body.contents().find("#number").val();
+			$.ajax({
+				type:'post',
+				url:projectPath+'/book',
+				data:{
+					"method":"updateBook",
+					"user_id":user.user_id,
+					"sessionID":localStorage.sessionID,
+					"book_id":book_id,
+					"name":name,
+					"url":url,
+					"code":code,
+					"type_id":type_id,
+					"author":author,
+					"press":press,
+					"number":number,
+				},
+				success:function(res){
+				}
+			})
+		}
+		
+		function confirmAddBook(body){
+			var book_id = body.contents().find("#book_id").val();
+			var name = body.contents().find("#name").val();
+			var url = body.contents().find("#url").val();
+			var code = body.contents().find("#code").val();
+			var type_id = body.contents().find("#sel").val();
+			var author = body.contents().find("#author").val();
+			var press = body.contents().find("#press").val();
+			var number = body.contents().find("#number").val();
+			$.ajax({
+				type:'post',
+				url:projectPath+'/book',
+				data:{
+					"method":"addBook",
+					"user_id":user.user_id,
+					"sessionID":localStorage.sessionID,
+					"book_id":book_id,
+					"name":name,
+					"url":url,
+					"code":code,
+					"type_id":type_id,
+					"author":author,
+					"press":press,
+					"number":number,
+				},
+				success:function(res){
+				}
+			})
 		}
 	</script>
 </body>

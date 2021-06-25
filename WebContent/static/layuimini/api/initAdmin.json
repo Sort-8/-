@@ -46,25 +46,10 @@
         },
         {
           "title": "图书管理",
-          "href": "",
+          "href": "public/bookList.jsp?t=1",
           "icon": "fa fa-building",
           "target": "_self",
-          "child": [
-          	{
-	          "title": "图书信息",
-	          "href": "public/bookList.jsp?t=1",
-	          "icon": "fa fa-book",
-	          "target": "_self",
-	          "child": []
-	        },
-	        {
-	          "title": "图书借阅记录",
-	          "href": "admin/booklend.jsp",
-	          "icon": "fa fa-pencil-square",
-	          "target": "_self",
-	          "child": []
-	        }
-          ]
+          "child": []
         },
         {
           "title": "借阅规则",

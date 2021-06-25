@@ -65,9 +65,11 @@ public class ExcelServiceImpl implements ExcelService {
 			list.add("作者");
 			list.add("出版社");
 			list.add("馆藏");
+			list.add("图片地址");
 		}else if("user".equals(entity)) {
-			list.add("登录名");
+			list.add("帐号");
 			list.add("密码");
+			list.add("用户名");
 			list.add("邮箱");		
 			list.add("性别");		
 		}

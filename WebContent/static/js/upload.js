@@ -71,8 +71,8 @@ function onloadFile(){
 	}, function(err, data) {
 	    //console.log(err || data);
 	    layer.msg("上传成功", {icon: 1,time: 1000});
-	    document.getElementById("url").value = data.Location;
-	    console.log(data.Location);//可以拿到文件地址
+	    document.getElementById("url").value = "http://"+data.Location;
+	    console.log(document.getElementById("url").value);//可以拿到文件地址
 	});	
 }
 

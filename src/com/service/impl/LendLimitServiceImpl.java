@@ -1,9 +1,14 @@
 package com.service.impl;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.entity.Book_record;
 import com.entity.Lend_limit;
+import com.entity.Role;
 import com.entity.User;
 import com.service.LendLimitService;
 import com.util.Dao;
@@ -58,6 +63,42 @@ private String errorMsg = "成功";
 		
 		//比较是否借阅已满
 		return currentLendNum>=limitNum?1:0;
+	}
+	
+	@Override
+	public List<Map> getAllLimit() {
+		List<Map> limitList = new ArrayList<Map>();
+		List<Lend_limit> list = Dao.instance().searchAll(new Lend_limit());
+		if(list==null) {
+			errorMsg = "查询失败";
+			return null;
+		}
+		Map<Integer,String> roleMap = new HashMap<Integer,String>();
+		List<Role> roleList = Dao.instance().searchAll(new Role());
+		for(int i=0;i<roleList.size();i++) {
+			roleMap.put(roleList.get(i).getRole_id(), roleList.get(i).getName());
+		}
+		
+		for(int i=0;i<list.size();i++) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("limit_id", ""+list.get(i).getLimit_id());
+			map.put("role_id", ""+list.get(i).getRole_id());
+			map.put("role_name", roleMap.get(list.get(i).getRole_id()));
+			map.put("max_number", ""+list.get(i).getMax_number());
+			map.put("max_time", ""+list.get(i).getMax_time());
+			limitList.add(map);
+		}
+		return limitList;
+	}
+	@Override
+	public int updateLimit(Lend_limit lend_limit) {
+		int res = 0;
+		res = Dao.instance().update(lend_limit);
+		if(res==0) {
+			errorMsg = Dao.instance().getErrorMsg();
+			return -1;
+		}
+		return res;
 	}
 
 }
