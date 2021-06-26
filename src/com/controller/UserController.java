@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import com.entity.User;
 import com.service.BookService;
+import com.service.StatisticsService;
 import com.service.UserService;
 import com.service.impl.BookServiceImpl;
+import com.service.impl.StatisticsServiceImpl;
 import com.service.impl.UserServiceImpl;
 import com.util.Constant;
 import com.util.ReturnResult;
@@ -26,6 +28,7 @@ public class UserController<T> extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserService userService = new UserServiceImpl();
 	BookService bookService = new BookServiceImpl();
+	StatisticsService statisticsService = new StatisticsServiceImpl();
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 	Map<String,String> paramMap = new HashMap<String,String>();
 	Map<String, Object> objMap = null;
@@ -48,6 +51,7 @@ public class UserController<T> extends HttpServlet {
 					String errorMsg = userService.getErrorMsg();
 					ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, errorMsg);
 				}else {
+					statisticsService.addOnline(getServletContext());
 					objMap = new HashMap<String,Object>();
 					String sessionID = Constant.IdentityCode+session.getId();
 					session.setAttribute(sessionID, user.getUser_id());
@@ -56,8 +60,19 @@ public class UserController<T> extends HttpServlet {
 					ajaxResult = ReturnResult.success(objMap, Constant.RESCODE_SUCCESS_MSG, 1);
 				}
 			}
+		}
+		//设置登录退出操作
+		else if("loginOut".equals(method)) {
+			int count = userService.setLoginOut(getServletContext());
+			if(count==1) {
+				session.removeAttribute(request.getParameter("sessionID"));//清除指定session
+				ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, count);
+			}else  {
+				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, "没有在线用户");
+			}
+		}
 		//注册或添加用户
-		}else if("register".equals(method) || "addUser".equals(method)) {
+		else if("register".equals(method) || "addUser".equals(method)) {
 			User user = new User();
 			user.setUsr(usr);
 			user = userService.findOneUser(user);

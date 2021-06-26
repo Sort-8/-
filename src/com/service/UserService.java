@@ -1,6 +1,9 @@
 package com.service;
 
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import com.entity.User;
 
 public interface UserService {
@@ -10,6 +13,9 @@ public interface UserService {
 	
 	/*登录*/
 	public User login(String usr, String pwd);
+	
+	/*设置退出登录*/
+	public int setLoginOut(ServletContext servletContext);
 	
 	/*添加用户*/
 	public int addUser(User user);
@@ -31,4 +37,5 @@ public interface UserService {
 	
 	/*获取所有用户*/
 	public List<User> getAllUsers();
+
 }

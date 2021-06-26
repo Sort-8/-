@@ -2,6 +2,9 @@ package com.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import com.entity.User;
 import com.service.UserService;
 import com.util.Dao;
@@ -31,6 +34,22 @@ public class UserServiceImpl implements UserService {
 		}
 		list.get(0).setPwd("******");
 		return list.get(0);
+	}
+	
+	@Override
+	public int setLoginOut(ServletContext application) {
+		if(application.getAttribute("online")!=null) {
+			int count = (int) application.getAttribute("online");
+			if(count!=0) {
+				application.setAttribute("online", count-1);
+				System.out.println("用户登出");
+			}else {
+				return 0;
+			}
+		}else {
+			return -1;
+		}
+		return 1;
 	}
 	
 	@Override
