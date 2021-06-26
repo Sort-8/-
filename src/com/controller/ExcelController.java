@@ -31,10 +31,11 @@ public class ExcelController<T> extends HttpServlet {
 	ExcelService excelService = new ExcelServiceImpl();
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//获取方法
 		String method = request.getParameter("method");
 		String entity = request.getParameter("entity");
-		
-		if("import".equals(method)) {  //导入
+		//导入
+		if("import".equals(method)) {  
 			Part part = request.getPart("filePath");
 			String fileName = StringUtil.getFileName(part);
 			InputStream in = part.getInputStream();
@@ -42,9 +43,9 @@ public class ExcelController<T> extends HttpServlet {
 			int res = 0;
 			try {
 				if("book".equals(entity)) {
-					res = excelService.importEntity(in,fileName,Book.class);
+					res = excelService.importBook(in,fileName,Book.class);
 				}else {
-					res = excelService.importEntity(in,fileName,User.class);
+					res = excelService.importUser(in,fileName,User.class);
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -54,8 +55,8 @@ public class ExcelController<T> extends HttpServlet {
 			}else {
 				ajaxResult = ReturnResult.success("导入成功", Constant.RESCODE_SUCCESS, res);
 			}
-			
-		}else if("export".equals(method)) { //导出
+		//导出
+		}else if("export".equals(method)) { 
 			String newFileName = StringUtil.getFileName();
 			InputStream in = null;
 			try {
@@ -85,8 +86,9 @@ public class ExcelController<T> extends HttpServlet {
 				System.out.println("导出失败");
 				ajaxResult = ReturnResult.error(Constant.RESCODE_EXCEPTION, excelService.getErrorMsg());
 			}
-			
-		}else if("template".equals(method)) { //下载模板
+			return;
+		//下载模板
+		}else if("template".equals(method)) { 
 			String newFileName = StringUtil.getFileName();
 			InputStream in = null;
 			try {
@@ -106,6 +108,7 @@ public class ExcelController<T> extends HttpServlet {
 					in.close();
 					out.close();
 				}
+				return;
 			}catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("模板制作失败");

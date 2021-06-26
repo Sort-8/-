@@ -1,7 +1,6 @@
 package com.service.impl;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import com.entity.User;
 import com.service.ExcelService;
 import com.util.Dao;
 import com.util.ReadExcelFile;
+import com.util.StringUtil;
 
 public class ExcelServiceImpl implements ExcelService {
 
@@ -22,13 +22,14 @@ public class ExcelServiceImpl implements ExcelService {
 	}
 	
 	@Override
-	public int importEntity(InputStream in, String fileName, Class clazz) {
-		List<Map> list = ReadExcelFile.getExcelInfo(in,fileName);
+	public int importUser(InputStream in, String fileName, Class<?> clazz) {
+		List<Map> list = ReadExcelFile.getExcelInfo(in,fileName,StringUtil.getUserMap());
+		System.out.println(list);
 		if(list==null) {
 			errorMsg = ReadExcelFile.getErrorInfo();
 			return 0;
 		}
-		int res = Dao.instance().mapInsert(list, clazz);
+		int res = Dao.instance().mapInsert(list, clazz, StringUtil.getParmName("user"));
 		if(res==0) {
 			errorMsg = Dao.instance().getErrorMsg();
 			return 0;
@@ -36,6 +37,22 @@ public class ExcelServiceImpl implements ExcelService {
 		return 1;
 	}
 
+	@Override
+	public int importBook(InputStream in, String fileName, Class clazz) {
+		List<Map> list = ReadExcelFile.getExcelInfo(in,fileName,StringUtil.getBookMap());
+		System.out.println(list);
+		if(list==null) {
+			errorMsg = ReadExcelFile.getErrorInfo();
+			return 0;
+		}
+		int res = Dao.instance().mapInsert(list, clazz, StringUtil.getParmName("book"));
+		if(res==0) {
+			errorMsg = Dao.instance().getErrorMsg();
+			return 0;
+		}
+		return 1;
+	}
+	
 	@Override
 	public List<Book> getAllBook() {
 		List<Book> list = Dao.instance().searchAll(new Book());
@@ -65,7 +82,6 @@ public class ExcelServiceImpl implements ExcelService {
 			list.add("作者");
 			list.add("出版社");
 			list.add("馆藏");
-			list.add("图片地址");
 		}else if("user".equals(entity)) {
 			list.add("帐号");
 			list.add("密码");

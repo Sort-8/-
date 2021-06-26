@@ -216,25 +216,12 @@ function headerToolbar(table){
 					area: ['430px', '280px'],
 					maxmin: true,
 					shadeClose: true,
-					content: '../public/import.jsp',
-					success: function(layero, index) {
-						
-					},
+					content: '../public/import.jsp?entity=user',
 				});
 				break;
 			case 'exportUser':
-				$.ajax({
-					type:'post',
-					url:projectPath+'/user',
-					data:{
-						"method":"exportUser",
-						"user_id":user.user_id,
-						"sessionID":localStorage.sessionID,
-					},
-					success:function(res){
-						layer.msg("导出成功", {icon: 1,time: 2000});
-					}
-				})
+				exportUser();
+				layer.msg("导出成功", {icon: 1,time: 2000});
 				break;
 		};
 	});
@@ -285,4 +272,14 @@ function addUser(body){
 			"role_id":role_id,
 		},
 	})
+}
+
+//导出文件
+function exportUser(){
+	let url= projectPath+'/excel?'+"method=export&user_id="+user.user_id+"&sessionID="+localStorage.sessionID+"&entity=user"　//URL根据自己项目中实际情况而定
+	let down = document.createElement('a');
+	down.href = url;
+	// document.body.appendChild(down);　　//此步骤可省略
+	down.click();
+	down.remove();　　//此步骤可省略
 }

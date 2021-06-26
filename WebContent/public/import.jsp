@@ -16,13 +16,15 @@
 	$(function(){
 		var projectPath = getProjectPath();
 		var user = getUser();
-		document.getElementById("template").href = projectPath+'/excel?entity=book&method=template';
+		document.getElementById("template").href = projectPath+"/excel?entity="+"<%=request.getParameter("entity")%>"+"&method=template";
+		
 	})
 </script>
 <body>
 	<div id="add_div" style="margin: 8%; ">
-		<form action="ExcelController" method="post" enctype="multipart/form-data"
-		 class="layui-form layui-form-pane" id="add_form">
+		<form action="../excel" method="post" enctype="multipart/form-data" id="add_form">
+		 <input type="text" name="entity" value="<%=request.getParameter("entity")%>" style="display:none" />
+		 <input type="text" name="method" value="import" style="display:none" />
 		 <div class="layui-form-item">
 		     <div class="layui-input-block">
 		     	<input type="file" name="filePath" class="file-btn" /> <input type="submit" value="导入" />

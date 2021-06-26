@@ -278,29 +278,12 @@ function headerToolbar(table){
 					area: ['430px', '280px'],
 					maxmin: true,
 					shadeClose: true,
-					content: 'import.jsp',
-					success: function(layero, index) {
-						layer.msg("导入成功", {icon: 1,time: 2000});
-						layer.close(index);
-						table.reload('cardTable', {})
-					}
+					content: 'import.jsp?entity=book',
 				});
 				break;
 			case 'exportBook':
-				$.ajax({
-					type:'post',
-					url:projectPath+'/book',
-					data:{
-						"method":"exportBook",
-						"user_id":user.user_id,
-						"sessionID":localStorage.sessionID,
-					},
-					success:function(res){
-						layer.msg("导出成功", {icon: 1,time: 2000});
-						layer.close(index);
-						table.reload('cardTable', {})
-					}
-				})
+				exportBook();
+				layer.msg("导出成功", {icon: 1,time: 2000});
 				break;
 		};
 	});
@@ -416,4 +399,14 @@ function confirmAddBook(body){
 		success:function(res){
 		}
 	})
+}
+
+//导出文件
+function exportBook(){
+	var url= projectPath+'/excel?'+"method=export&user_id="+user.user_id+"&sessionID="+localStorage.sessionID+"&entity=book"　//URL根据自己项目中实际情况而定
+	var down = document.createElement('a');
+	down.href = url;
+	// document.body.appendChild(down);　　//此步骤可省略
+	down.click();
+	down.remove();　　//此步骤可省略
 }

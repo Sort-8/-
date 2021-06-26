@@ -11,7 +11,9 @@ public interface ExcelService {
 	/*返回错误信息*/
 	public String getErrorMsg();
 	
-	public int importEntity(InputStream in, String fileName, Class<?> clazz);
+	public int importUser(InputStream in, String fileName, Class<?> clazz);
+	
+	public int importBook(InputStream in, String fileName, Class<?> clazz);
 
 	public List<Book> getAllBook();
 
