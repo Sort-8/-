@@ -1,8 +1,10 @@
 //拿到当前网址
 var currentPath = getProjectPath();//获取项目路径
+var user = getUser();
 layui.use(['layer'],function () {
     var layer = layui.layer;
 })
+
 $(function () {
     // 页面初始化生成验证码
     window.onload = createCode();
@@ -19,6 +21,7 @@ $(function () {
         register();
     });
 });
+
 // 生成验证码
 function createCode() {
 	document.getElementById("loginCode").src=currentPath+"/getcode?"+Math.random();
@@ -66,6 +69,7 @@ function login() {
                 	localStorage.user = JSON.stringify(data.data.obj);
                 	localStorage.sessionID = data.data.sessionID;
                 	localStorage.auth = data.data.obj.auth;
+                	localStorage.user_id = data.data.obj.user_id;
                 	window.location.href = 'index.jsp';
                 }else if(data.code==1011){
                 	layer.msg("验证码不匹配", {icon: 2,time: 1000});

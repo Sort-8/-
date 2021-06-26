@@ -44,12 +44,10 @@ layui.use(['jquery', 'layer', 'miniAdmin','miniTongji'], function () {
     };
     miniAdmin.render(options);
     $('.login-out').on("click", function () {
-        localStorage.clear()
         layer.msg('退出登录成功', {
         	  icon: 1,
         	  time: 1000 
         	}, function () {
-        	localStorage.clear();
             window.location = 'login.jsp';
         });
     });
