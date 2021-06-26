@@ -216,7 +216,7 @@ function headerToolbar(table){
 					area: ['430px', '280px'],
 					maxmin: true,
 					shadeClose: true,
-					content: 'import.jsp',
+					content: '../public/import.jsp',
 					success: function(layero, index) {
 						
 					},
