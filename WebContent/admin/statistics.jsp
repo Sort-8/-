@@ -32,22 +32,39 @@
 		color: #009688; 
 		font-size: 26px;
 	}
+	
 </style>
 <body>
-	<div class="layui-row layui-col-space20">
+	<div class="layui-row layui-col-space30">
 		<div class="layui-col-md6">
-			<div class="layui-card" id="one" style="margin: 20px 10px">
-				<div class="layui-card-header"><b>图书类别统计</b></div>
+			<div class="layui-card" id="one">
+				<div class="layui-card-header"><b>图书借阅统计</b></div>
 				<div class="layui-card-body">
-					<div id="type" style="width: 680px;height:400px;"></div>
+					<div id="press1" style="width: 350px;height:100px;"></div>
 				</div>
 			</div>
 		</div>
 		<div class="layui-col-md6">
-			<div class="layui-card" style="margin: 20px 0px 0px 10px">
-				<div class="layui-card-header"><b>图书出版社统计</b></div>
+			<div class="layui-card" >
+				<div class="layui-card-header"><b>图书1出版社统计</b></div>
+				<div class="layui-card-body">
+					<div id="press2" style="width: 350px;height:100px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-md6">
+			<div class="layui-card" >
+				<div class="layui-card-header"><b>出版社统计</b></div>
 				<div class="layui-card-body">
 					<div id="press" style="width: 550px;height:400px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-md6">
+			<div class="layui-card" >
+				<div class="layui-card-header"><b>图书分类统计</b></div>
+				<div class="layui-card-body">
+					<div id="type" style="width: 680px;height:400px;"></div>
 				</div>
 			</div>
 		</div>

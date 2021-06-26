@@ -94,7 +94,7 @@ public class Dao {
 	 * @param clazz
 	 * @return
 	 */
-	public int mapInsert(List<Map> list,Class<?> clazz) {
+	public int mapInsert(List<Map> list,Class<?> clazz,List<String> parmName) {
 		int row = 0;
 		if(list==null||list.isEmpty()) {
 			msg = "参数list为空";
@@ -104,30 +104,32 @@ public class Dao {
 			msg = "参数class对象为空";
 			return 0;
 		}
+		System.out.println(parmName);
 		Object obj = null;
 		String tableName = getTableName(clazz);
 		Field fields[] = clazz.getDeclaredFields(); 
 		//构造sql语句
 		StringBuffer sql = new StringBuffer("insert into "+tableName+"(");
-		for(int i=1;i<fields.length;i++) {  //跳过id属性
-			sql.append(fields[i].getName()+",");
+		for(int i=0;i<parmName.size();i++) {  
+			sql.append(parmName.get(i)+",");
 		}
 		sql.deleteCharAt(sql.lastIndexOf(","));
 		sql.append(") value(");
-		for(int i=1;i<fields.length;i++) {
+		for(int i=0;i<parmName.size();i++) {
 			sql.append("?,");
 		}
 		sql.deleteCharAt(sql.lastIndexOf(","));
 		sql.append(");");
-		
+		System.out.println(sql);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(new String(sql));
 			for(int i=0;i<list.size();i++) {
 				Object[] res = new Object[list.get(0).size()];
 				Map<String, Object> map = list.get(i);
-				for(int j=1;j<=map.size();j++) {  //跳过id属性
-					ps.setObject(j, map.get(fields[j].getName()) );
+				System.out.println(map);
+				for(int j=0;j<map.size();j++) {  
+					ps.setObject(j+1, map.get(parmName.get(j)) );
 				}
 				System.out.println(ps);
 				ps.addBatch();

@@ -3,8 +3,10 @@ package com.util;
 import javax.servlet.http.Part;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -159,4 +161,61 @@ public class StringUtil {
 		mapName.put("性别", "sex");
 		return mapName;
 	}
+
+	/**
+	 * 文件头
+	 * @param <T>
+	 * @param t
+	 * @return
+	 */
+	public static <T> List<String> getRowHeader(T t) {
+		List<String> list = new ArrayList<String>();
+		if("Book".equals(t.getClass().getSimpleName())) {
+			list.add("序号");
+			list.add("IBSN");
+			list.add("图书名称");
+			list.add("作者");
+			list.add("出版社");
+			list.add("借阅次数");
+			list.add("类别");
+			list.add("可借阅数");
+			list.add("总数");
+			list.add("借阅状态");
+			list.add("图片地址");
+			list.add("创建者");
+			list.add("创建时间");
+		}else if("User".equals(t.getClass().getSimpleName())) {
+			list.add("用户id");
+			list.add("角色id");
+			list.add("登录帐号");
+			list.add("密码");
+			list.add("用户名");
+			list.add("权限");
+			list.add("邮箱");
+			list.add("性别");
+			list.add("注册时间");
+		}
+		return list;
+	}
+
+	public static List<String> getParmName(String entity) {
+		List<String> list = new ArrayList<String>();
+		if("user".equals(entity)) {
+			list.add("usr");
+			list.add("pwd");
+			list.add("name");
+			list.add("email");
+			list.add("sex");
+			list.add("create_time");
+		}else if("book".equals(entity)) {
+			list.add("code");
+			list.add("name");
+			list.add("author");
+			list.add("press");
+			list.add("number");
+			list.add("create_time");
+		}
+		return list;
+	}
+
 }

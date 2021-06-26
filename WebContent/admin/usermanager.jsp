@@ -13,6 +13,11 @@
 	<title>用户管理</title>
 	
 </head>
+<style>
+	#operate{
+		margin-left: 280px
+	}
+</style>
 <body>
 	<table class="layui-hide" id="cardTable" lay-filter="formFilter"></table>
 	<!-- 头部工具栏 -->
@@ -29,7 +34,7 @@
 		条件搜索：
 		<div class="layui-inline" style="width:120px">
 			<select id="condition" name="condition" >
-			<option value=""></option>
+			<option value="usr"></option>
 			<option value="usr">登录名</option>
 			<option value="name">姓名</option>
 			<option value="email">邮箱</option>
@@ -40,21 +45,20 @@
     		<input class="layui-input" id="value" name="value"  style="width:200px">
   		</div>
 		<button class="layui-btn" name="search" data-type="reload"  lay-event="search">搜索</button>
-		<br>
-		<br>
+
+		<div class="layui-inline" id="operate">
 		<button class="layui-btn layui-btn-sm" name="addUser" data-type="reload"  lay-event="addUser">添加</button>
-			
 		<button class="layui-btn layui-btn-sm layui-btn-normal" data-type="reload" id="importUser" lay-event="importUser">导入</button>
 		<button class="layui-btn layui-btn-sm layui-btn-normal" data-type="reload" id="importUser" lay-event="exportUser">导出</button>
-
+		</div>
 	</script>
 	<!-- 操作按钮 -->
 	<script type="text/html" id="barDemo">
 		{{#  if(d.user_id != localStorage.user_id ){ }}
-			<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="update">修改</a>
+			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="update">修改</a>
 			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 		{{#  }else{ }}
-			<a class="layui-btn layui-btn-xs layui-btn-disabled" lay-event="update">修改</a>
+			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="update">修改</a>
 			<a class="layui-btn layui-btn-xs layui-btn-disabled">删除</a>
 		{{#  } }}
 	</script>

@@ -27,6 +27,8 @@ function tableRender(table) {
 			"sessionID": localStorage.sessionID,
 			"user_id": user.user_id,
 		}
+		,cellMinWidth: 80
+		 ,defaultToolbar: false
 		, cols: [[
 			{ type: 'checkbox' }
 			, { field: 'role_name', width: 160, title: '角色名', }

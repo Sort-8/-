@@ -29,6 +29,8 @@ function tableRender(table){
 	    	"sessionID":localStorage.sessionID,
 	    	"user_id":user.user_id,
 	    }
+	    ,cellMinWidth: 80
+		 ,defaultToolbar: false
 	    ,toolbar: '#headBar'
 	    ,cols: [[
 	      {type:'checkbox'}

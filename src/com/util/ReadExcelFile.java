@@ -38,7 +38,7 @@ public class ReadExcelFile<T> {
 	 * @param fileName
 	 * @return
 	 */
-	public static List<Map> getExcelInfo(InputStream io,String fileName ){
+	public static List<Map> getExcelInfo(InputStream io,String fileName ,Map<String,String> parmMap){
 		if(!validateExcel(fileName)) { //验证Excel文件
 			return null;
 		}
@@ -72,10 +72,15 @@ public class ReadExcelFile<T> {
 	            Map<String, Object> map = new HashMap<>();
 	            row = sheet.getRow(i);
 	            if (row != null){
-	                for (int j = 1; j < totalCols; j++) {
-	                    Object cellData = getCellFormatValue(row.getCell(j));
-	                    map.put(arrayList.get(j), cellData); // map 封装
+	                for (int j = 0; j < totalCols; j++) {
+	                	Object cellData = null;
+	                	if(StringUtil.isNum(row.getCell(j).toString()))
+	                		cellData = Math.round(Double.valueOf(row.getCell(j).toString()));
+	                	else
+	                		cellData = row.getCell(j).toString();
+	                    map.put(parmMap.get(arrayList.get(j)), cellData); // map 封装
 	                }
+	                map.put("create_time", System.currentTimeMillis());
 	                list.add(map); // map存入list
 	            }
 	        }

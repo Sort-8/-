@@ -32,13 +32,15 @@ function tableRender(table) {
 			"user_id": user.user_id,
 		}
 		, toolbar: '#headBar'
+		,cellMinWidth: 80
+		 ,defaultToolbar: false
 		, cols: [[
 			{ type: 'checkbox' }
-			, { field: 'usr', width: 160, title: '登录名', }
-			, { field: 'name', width: 230, title: '姓名' }
-			, { field: 'email', width: 150, title: '邮箱'}
-			, { field: 'sex', title: '性别', width: 250 }
-			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 180 },
+			, { field: 'usr', width: 250, title: '登录名', }
+			, { field: 'name', width: 250, title: '姓名' }
+			, { field: 'email', width: 250, title: '邮箱'}
+			, { field: 'sex', title: '性别', width: 150 }
+			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230 },
 		]]
 		, page: true
 		, parseData: function (res) { //res 即为原始返回的数据

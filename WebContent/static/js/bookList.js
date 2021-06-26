@@ -30,6 +30,8 @@ function tableRender(table) {
 			"sessionID": localStorage.sessionID,
 			"user_id": user.user_id,
 		}
+		,cellMinWidth: 80
+		 ,defaultToolbar: false
 		, toolbar: '#headBar'
 		, cols: [[
 			{ type: 'checkbox' }
@@ -37,11 +39,11 @@ function tableRender(table) {
 			, { field: 'name', width: 230, title: '图书名称' }
 			, {
 				field: 'url', width: 150, title: '图片',
-				templet: '<div><img src="{{d.url}}" style="width:90px; height:90px;" onclick="showBigImage(this)""></div>'
+				templet: '<div><img src="{{d.url}}" style=" height:100px;" onclick="showBigImage(this)""></div>'
 			}
 			, { field: 'author', title: '作者', width: 250 }
 			, { field: 'press', width: 250, title: '出版社' }
-			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 180 },
+			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 180, minWidth: 80 },
 		]]
 		, page: true
 		, parseData: function (res) { //res 即为原始返回的数据
@@ -90,6 +92,9 @@ function sideToolbar(table) {
 				break;
 			case 'del':
 				confirmdelBook(table,data);
+				break;
+			case 'update':
+				confirmupdateBook(table,data);
 				break;
 		}
 	})
@@ -208,11 +213,87 @@ function confirmdelBook(table,data){
 		layer.close(index);
 	});
 }
+
+//修改图书
+function confirmupdateBook(table,data){
+	layer.open({
+		type: 2,
+		title: '修改图书',
+		area: ['530px', '580px'],
+		btn: ['修改', '取消'],
+		maxmin: true,
+		shadeClose: true,
+		content: 'editBook.jsp?t=0',
+		success: function(layero, index) {
+			var body=layer.getChildFrame('body',index);
+			valuation(body,data);
+		},
+		yes : function(index,layero){
+			var body=layer.getChildFrame('body',index);
+			valuation(body,data)
+			confirmUpdateBook(body);
+			layer.msg("修改成功", {icon: 1,time: 2000});
+			layer.close(index);
+			table.reload('cardTable', {})
+		}
+	});
+}
+
+//赋值
+function valuation(body,data){
+	layui.use('form', function () {
+		var form = layui.form;
+	    form.render();
+		body.contents().find("#name").val(data.name);
+		body.contents().find("#preview_img").attr("src",data.url);
+		body.contents().find("#preview_img").css("display", "none");
+		body.contents().find("#code").val(data.code);
+		body.contents().find("#sel").val(data.type_id);
+		form.render('select','selFilter');
+		body.contents().find("#"+data.type_id).checked;
+		body.contents().find("#author").val(data.author);
+		body.contents().find("#press").val(data.press);
+		body.contents().find("#number").val(data.number);
+		body.contents().find("#book_id").val(data.book_id);
+		form.render();
+	});
+}
+
+function confirmUpdateBook(body){
+	var book_id = body.contents().find("#book_id").val();
+	var name = body.contents().find("#name").val();
+	var url = body.contents().find("#url").val();
+	var code = body.contents().find("#code").val();
+	var type_id = body.contents().find("#sel").val();
+	var author = body.contents().find("#author").val();
+	var press = body.contents().find("#press").val();
+	var number = body.contents().find("#number").val();
+	$.ajax({
+		type:'post',
+		url:projectPath+'/book',
+		data:{
+			"method":"updateBook",
+			"user_id":user.user_id,
+			"sessionID":localStorage.sessionID,
+			"book_id":book_id,
+			"name":name,
+			"url":url,
+			"code":code,
+			"type_id":type_id,
+			"author":author,
+			"press":press,
+			"number":number,
+		},
+		success:function(res){
+		}
+	})
+}
+
 //头部工具栏事件
 function headerToolbar(table){
 	table.on('toolbar(formFilter)', function (obj) {
 		var checkStatus = table.checkStatus(obj.config.id);
-		var list = checkStatus.data;
+		var data = checkStatus.data;
 		switch (obj.event) {
 			case 'search':
 				if($('#value').val()==''){
@@ -244,32 +325,6 @@ function headerToolbar(table){
 					}
 				});
 				
-				break;
-			case 'updateBook':
-				if(validate(checkStatus.data)==0){
-					break;
-				}else{
-					layer.open({
-						type: 2,
-						title: '修改图书',
-						area: ['530px', '580px'],
-						btn: ['修改', '取消'],
-						maxmin: true,
-						shadeClose: true,
-						content: 'editBook.jsp?t=0',
-						success: function(layero, index) {
-							var body=layer.getChildFrame('body',index);
-							valuation(body,list);
-						},
-						yes : function(index,layero){
-							var body=layer.getChildFrame('body',index);
-							confirmUpdateBook(body);
-							layer.msg("修改成功", {icon: 1,time: 2000});
-							layer.close(index);
-							table.reload('cardTable', {})
-						}
-					});
-				}
 				break;
 			case 'importBook':
 				layer.open({
@@ -307,68 +362,6 @@ function searchBook(table){
 			curr: 1 //重新从第 1 页开始
 		}
 	});
-}
-
-//验证是否选中一行
-function validate(data){
-	if(data.length==0){
-		layer.msg("还未选择", {icon: 3,time: 1000});
-		return 0;
-	}else if(data.length>1){
-		layer.msg("请选择一个", {icon: 3,time: 1000});
-		return 0;
-	}
-	return 1;
-}
-
-//赋值
-function valuation(body,list){
-	layui.use('form', function () {
-		var form = layui.form;
-	    form.render();
-		body.contents().find("#name").val(list[0].name);
-		body.contents().find("#preview_img").attr("src",list[0].url);
-		body.contents().find("#preview_img").css("display", "block");
-		body.contents().find("#code").val(list[0].code);
-		body.contents().find("#sel").val(list[0].type_id);
-		form.render('select','selFilter');
-		body.contents().find("#"+list[0].type_id).checked;
-		body.contents().find("#author").val(list[0].author);
-		body.contents().find("#press").val(list[0].press);
-		body.contents().find("#number").val(list[0].number);
-		body.contents().find("#book_id").val(list[0].book_id);
-		form.render();
-	});
-}
-
-function confirmUpdateBook(body){
-	var book_id = body.contents().find("#book_id").val();
-	var name = body.contents().find("#name").val();
-	var url = body.contents().find("#url").val();
-	var code = body.contents().find("#code").val();
-	var type_id = body.contents().find("#sel").val();
-	var author = body.contents().find("#author").val();
-	var press = body.contents().find("#press").val();
-	var number = body.contents().find("#number").val();
-	$.ajax({
-		type:'post',
-		url:projectPath+'/book',
-		data:{
-			"method":"updateBook",
-			"user_id":user.user_id,
-			"sessionID":localStorage.sessionID,
-			"book_id":book_id,
-			"name":name,
-			"url":url,
-			"code":code,
-			"type_id":type_id,
-			"author":author,
-			"press":press,
-			"number":number,
-		},
-		success:function(res){
-		}
-	})
 }
 
 function confirmAddBook(body){

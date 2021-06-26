@@ -38,6 +38,8 @@ function tableRender(table){
 	    	"user_id":user.user_id,
 	    }
 	    ,toolbar: '#headBar'
+	    ,cellMinWidth: 80
+		 ,defaultToolbar: false
 	    ,cols: [[
 	      {type:'checkbox'}
 	      ,{field:'user_id', width:130, title: '帐号',  }

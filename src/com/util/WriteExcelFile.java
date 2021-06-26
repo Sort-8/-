@@ -34,8 +34,9 @@ public class WriteExcelFile {
 		HSSFSheet sheet =  wb.createSheet(tableName); //创建Excel文件表
 		//设置表头
 		HSSFRow rowHeader = sheet.createRow(0); 
-		for(int i=0; i<fields.length; i++) {
-			rowHeader.createCell(i).setCellValue(fields[i].getName()); 
+		List<String> names = StringUtil.getRowHeader(result.get(0));
+		for(int i=0; i<names.size(); i++) {
+			rowHeader.createCell(i).setCellValue(names.get(i)); 
 		}
 		//写入数据
 		for(int i=0; i<result.size(); i++) { //横向写数据

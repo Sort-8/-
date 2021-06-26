@@ -38,6 +38,6 @@
         {{#  } }}
 	</script>
 	
-	<script type="text/javascript" src="../static/js/lendrule.js"></script>
+	<script type="text/javascript" src="../static/js/userlend.js"></script>
 </body>
 </html>
