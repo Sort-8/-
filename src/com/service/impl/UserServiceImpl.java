@@ -113,6 +113,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllUsers() {
-		return Dao.instance().searchAll(new User());
+		return Dao.instance().setfuzzyQuery(false, true).searchAll(new User());
 	}
 }

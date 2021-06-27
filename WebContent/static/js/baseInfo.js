@@ -41,6 +41,7 @@ function getUserInfo(){
             data:{
             	"sessionID":sessionID,
                 "user_id":user.user_id,
+                "up_user_id":user.user_id,
                 "method":'searchUser',
                 "parmName":'user_id',
                 "parmValue":user.user_id,
@@ -166,14 +167,14 @@ function saveChange(){
         data:{
         	"sessionID":sessionID,
             "user_id":user.user_id,
+            "up_user_id":user.user_id,
             "role_id":user.role_id,
             "method":'updateUser',
             "usr":document.getElementById('usr').value,
             "name":document.getElementById('name').value,
             "email":document.getElementById('email').value,
             "sex":document.getElementById('sex').value,
-            "re_pwd":document.getElementById('new_password').value,
-            "pwd":document.getElementById('old_password').value,
+            "pwd":document.getElementById('new_password').value,
             "auth":user.auth,
         },
         success:function (data) {

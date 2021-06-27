@@ -19,11 +19,11 @@
 	}
 	.layui-card-header{
 		font-size: 18px;
+		text-align:center;
 	}
 	.layui-btn{
 		height: 100px;
 		background-color: #F2F2F2;
-		margin: 30px 0px 0px 60px;
 	}
 	.layui-btn p{
 		font-size: 20px;
@@ -32,23 +32,28 @@
 		color: #009688; 
 		font-size: 26px;
 	}
-	
+	#one{
+		 text-align: center;
+	}
 </style>
 <body>
 	<div class="layui-row layui-col-space30">
-		<div class="layui-col-md6">
+		<div class="layui-col-sm12 layui-inline">
 			<div class="layui-card" id="one">
-				<div class="layui-card-header"><b>图书借阅统计</b></div>
+				<div class="layui-card-header"><b>统计</b></div>
 				<div class="layui-card-body">
-					<div id="press1" style="width: 350px;height:100px;"></div>
-				</div>
-			</div>
-		</div>
-		<div class="layui-col-md6">
-			<div class="layui-card" >
-				<div class="layui-card-header"><b>图书1出版社统计</b></div>
-				<div class="layui-card-body">
-					<div id="press2" style="width: 350px;height:100px;"></div>
+					<button type="button" class="layui-btn layui-btn-primary layui-btn-lg">
+						<p>在线人数</p>
+						<span id="onlineNum">0</span>
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary layui-btn-lg">
+						<p>图书总数</p>
+						<span id="bookNum">0</span>
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary layui-btn-lg">
+						<p>借阅数量</p>
+						<span id="LendNum">0</span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -72,5 +77,33 @@
 
 	<script type="text/javascript" src="../static/layuimini/js/lay-module/echarts/echarts.js"></script>
 	<script type="text/javascript" src="../static/js/statistics.js"></script>
+	<script type="text/javascript">
+		var projectPath = getProjectPath();
+		var user = getUser();
+		$(function(){
+			//在线人数统计
+			$.ajax({
+				type:'get',
+				url:projectPath+"/statistics",
+				data:{
+					"method":"getStatistics",
+					"user_id":user.user_id,
+					"sessionID":localStorage.sessionID,
+				},
+				success: function(res) {
+					if (res.code == 1000) {
+						InsertValue("LendNum", res.data.LendNum);
+						InsertValue("bookNum", res.data.bookNum);
+						InsertValue("onlineNum", res.data.onlineNum);
+					}
+				}
+			})
+		})
+		
+		
+		function InsertValue(id, value) {
+			document.getElementById(id).innerText = value;
+		}
+	</script>
 </body>
 </html>

@@ -44,7 +44,7 @@ function tableRender(table){
 	    		  return '未知';
 	      } }
 	      ,{field:'book_name', title: '图书名称', width: 250 }
-	      ,{field:'create_time', title: '借阅时间', width: 180, templet: function (d){
+	      ,{field:'create_time', title: '借阅时间', width: 250, templet: function (d){
 	    	  return datetimeFormat(d.create_time);
 	      }}
 	      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width:150,templet: function (d) {

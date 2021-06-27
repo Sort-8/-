@@ -4,6 +4,32 @@
 
 var projectPath = getProjectPath();
 var user = getUser();
+
+$(function(){
+	//在线人数统计
+	$.ajax({
+		type:'get',
+		url:projectPath+"/statistics",
+		data:{
+			"method":"getStatistics",
+			"user_id":user.user_id,
+			"sessionID":localStorage.sessionID,
+		},
+		success: function(res) {
+			if (res.code == 1000) {
+				InsertValue("LendNum", res.data.LendNum);
+				InsertValue("bookNum", res.data.bookNum);
+				InsertValue("onlineNum", res.data.onlineNum);
+			}
+		}
+	})
+})
+
+
+function InsertValue(id, value) {
+	document.getElementById(id).innerText = value;
+}
+
 //图书类别统计 
 var option_book_type = {
 	 title: {

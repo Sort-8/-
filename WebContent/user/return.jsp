@@ -17,7 +17,7 @@
 	<script type="text/html" id="headBar">
  		搜索方式：
 		<div class="layui-inline" style="width:120px">
-	  	  <select id="isFuzzyQuery" name="condition" lay-verify="required">
+	  	  <select id="isFuzzyQuery" name="isFuzzyQuery" lay-verify="required">
         	<option value=""></option>
 			<option value="0">精确搜索</option>
         	<option value="1">模糊搜索</option>
@@ -26,7 +26,7 @@
 		&nbsp;
 		图书名称：
   		<div class="layui-inline">
-    		<input class="layui-input" id="conditionValue" name="conditionValue" style="width:150px">
+    		<input class="layui-input" id="value" name="value" style="width:150px">
   		</div>
 		&nbsp;
   		<button class="layui-btn" name="condition" data-type="reload"  lay-event="search">搜索</button>

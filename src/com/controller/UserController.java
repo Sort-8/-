@@ -66,10 +66,8 @@ public class UserController<T> extends HttpServlet {
 			int count = userService.setLoginOut(getServletContext());
 			if(count==1) {
 				session.removeAttribute(request.getParameter("sessionID"));//清除指定session
-				ajaxResult = ReturnResult.success(null, Constant.RESCODE_SUCCESS, count);
-			}else  {
-				ajaxResult = ReturnResult.error(Constant.RESCODE_NOEXIST, "没有在线用户");
 			}
+			response.sendRedirect("login.jsp");
 		}
 		//注册或添加用户
 		else if("register".equals(method) || "addUser".equals(method)) {

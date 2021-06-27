@@ -38,9 +38,6 @@
 	            	<li class="layui-nav-item" lay-unselect>
 	                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
 	                </li>
-	                <li class="layui-nav-item" lay-unselect>
-	                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-	                </li>
 	                <li class="layui-nav-item layuimini-setting"style="margin-left: 50px; ">
 	                    <a  href="javascript:;"><span id="username">用户</span></a>
 	                    <dl class="layui-nav-child">
@@ -51,7 +48,7 @@
 	                            <hr>
 	                        </dd>
 	                        <dd>
-	                            <a href="javascript:;" class="login-out">退出登录</a>
+	                            <a href="./user?method=loginOut" class="login-out">退出登录</a>
 	                        </dd>
 	                    </dl>
 	                </li>

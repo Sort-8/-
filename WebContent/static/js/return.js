@@ -19,11 +19,7 @@ layui.use(['table','jquery','laydate'], function(){
 	  // 进行渲染
 	  var tableIns = tableRender(table);
 	  
-	  // 头部工具栏事件
 	  headerToolbar(table);
-	
-	  // 侧边工具栏事件
-	  sideToolbar(table);
 })
 
 //渲染表格
@@ -42,8 +38,8 @@ function tableRender(table){
 		 ,defaultToolbar: false
 	    ,cols: [[
 	      {type:'checkbox'}
-	      ,{field:'user_id', width:130, title: '帐号',  }
-	      ,{field:'record_type', width:100, title: '类型',templet: function (d){
+	      ,{field:'user_id', width:180, title: '帐号',  }
+	      ,{field:'record_type', width:150, title: '类型',templet: function (d){
 	    	  if(d.record_type==1)
 	    		  return '<div style="color:red;">借阅</div>';
 	    	  else if(d.record_type==2)
@@ -51,13 +47,11 @@ function tableRender(table){
 	    	  else
 	    		  return '未知';
 	      } }
-	      ,{field:'book_name', title: '图书名称', width: 200 }
-	      ,{field:'record_time', title: '借阅时间', width: 180, templet: function (d){
-	    	  return datetimeFormat(d.record_time);
+	      ,{field:'book_name', title: '图书名称', width: 250 }
+	      ,{field:'record_time', title: '借阅时间', width: 250, templet: function (d){
+	    	  return datetimeFormat(d.create_time);
 	      }}
-	      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width:150,templet: function (d) {
-	    	  return '<div style="text-align:center">' + d.Result + '</div>'
-	      }},
+	      ,
 	    ]]
 	    ,page: true
 	    ,parseData: function(res){ //res 即为原始返回的数据
@@ -83,5 +77,47 @@ function tableRender(table){
 	          };
 	     }
 	    ,limit: 10
+	});
+}
+
+
+//头部工具栏事件
+function headerToolbar(table){
+	table.on('toolbar(formFilter)', function (obj) {
+		var checkStatus = table.checkStatus(obj.config.id);
+		var list = checkStatus.data;
+		switch (obj.event) {
+			case 'search':
+				if($('#value').val()==''){
+					table.reload('cardTable',{
+						where:{
+							"method":"getAllLend",
+					    	"sessionID":localStorage.sessionID,
+					    	"user_id":user.user_id,
+						}
+					});
+				}else{
+					searchBook(table);
+				}
+				break;
+		}	
+	})
+}
+
+// 进行搜索，重新渲染
+function searchBook(table){
+	var isFuzzyQuery = $('#isFuzzyQuery').val();
+	var value = $('#value').val();
+	table.reload('cardTable',{
+		where: { //设定异步数据接口的额外参数，任意设
+			"method": "searchLend",
+			"sessionID": localStorage.sessionID,
+			"user_id": user.user_id,
+			"isFuzzyQuery": isFuzzyQuery,
+			"book_name": value,
+		}
+		, page: {
+			curr: 1 //重新从第 1 页开始
+		}
 	});
 }

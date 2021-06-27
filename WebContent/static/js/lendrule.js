@@ -30,11 +30,10 @@ function tableRender(table) {
 		,cellMinWidth: 80
 		 ,defaultToolbar: false
 		, cols: [[
-			{ type: 'checkbox' }
-			, { field: 'role_name', width: 160, title: '角色名', }
+			, { field: 'role_name', width: 230, title: '角色名', }
 			, { field: 'max_number', width: 230, title: '最大借阅数' }
-			, { field: 'max_time', width: 150, title: '最长借阅时间'}
-			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 180 },
+			, { field: 'max_time', width: 180, title: '最长借阅时间'}
+			, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 200 },
 		]]
 		, page: true
 		, parseData: function (res) { //res 即为原始返回的数据

@@ -21,7 +21,7 @@ import com.vo.AjaxResult;
  *
  * @param <T>
  */
-@WebFilter(filterName="DValidateIdentity", urlPatterns = { "/limit11111" })
+@WebFilter(filterName="DValidateIdentity", urlPatterns = { "/user","/book","/record","/limit","/type","/statistics"  })
 public class DValidateIdentity<T> implements Filter {
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 	

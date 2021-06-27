@@ -24,7 +24,7 @@ import com.vo.AjaxResult;
  *
  * @param <T>
  */
-@WebFilter(filterName="EValidateAuthority", urlPatterns = { "/limit11111111" })
+@WebFilter(filterName="EValidateAuthority", urlPatterns = { "/user","/book","/record","/limit","/type","/statistics"  })
 public class EValidateAuthority<T> implements Filter {
 	AjaxResult<T> ajaxResult = new AjaxResult<T>();
 
@@ -41,9 +41,7 @@ public class EValidateAuthority<T> implements Filter {
 		String method = req.getParameter("method");
 		
 		if(method!=null&&(method.equals("delUser")
-				||method.equals("selectUser")
-				||method.equals("searchUser")
-				||method.equals("lendLimit")
+				||method.equals("delBook")
 				)) {
 			String key = Constant.IdentityCode+session.getId();
 			int user_id = (int) session.getAttribute(key);

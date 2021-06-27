@@ -30,7 +30,7 @@
           "child": []
         },
         {
-          "title": "归还图书",
+          "title": "借阅记录",
           "href": "user/return.jsp",
           "icon": "fa fa-stack-overflow",
           "target": "_self",
