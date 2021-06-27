@@ -30,6 +30,7 @@ function tableRender(table) {
 		,cellMinWidth: 80
 		 ,defaultToolbar: false
 		, cols: [[
+			  {type:'checkbox'}
 			, { field: 'role_name', width: 230, title: '角色名', }
 			, { field: 'max_number', width: 230, title: '最大借阅数' }
 			, { field: 'max_time', width: 180, title: '最长借阅时间'}
