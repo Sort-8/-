@@ -83,7 +83,7 @@ public class UserController<T> extends HttpServlet {
 								request.getParameter("name"),
 								request.getParameter("email"),
 								request.getParameter("sex"),
-								Integer.valueOf(request.getParameter("auth")),
+								0,
 								System.currentTimeMillis()
 						);
 				int result = userService.addUser(user);
