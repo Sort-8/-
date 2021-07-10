@@ -1,6 +1,5 @@
 //拿到当前网址
 var currentPath = getProjectPath();//获取项目路径
-var user = getUser();
 layui.use(['layer'],function () {
     var layer = layui.layer;
 })
