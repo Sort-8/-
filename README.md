@@ -3,20 +3,6 @@
 #### 介绍
 广西民族大学Java EE企业级开发期末课程设计
 
-#### 演示地址：https://shinie.top/library/
-
-用户：
-
-​	帐号：zhangsan
-
-​	密码：123
-
-管理员：
-
-​	帐号：admin
-
-​	密码：123
-
 #### 需求
 
 系统用户分为：借阅者（包括学生、教师及其他用户）、管理员
@@ -49,8 +35,6 @@ Excel文件导入导出：poi
 
 #### 软件架构
 
-![1625047999391](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625047999391.png)
-
 #### 安装教程
 
 安装须知：本系统使用的数据库为mysql，若没有请自行百度解决连接数据库的问题。
@@ -61,51 +45,9 @@ Excel文件导入导出：poi
 
 2. 前往src中的util包的Constant.java，如下图
 
-   ![1625048197355](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625048197355.png)
-
 3. 修改其中的用户名和密码，如图
-
-   ![1625048311662](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625048311662.png)
 
 4. 修改完选择WebContent中的login.jsp即可运行
 
-#### 使用说明
 
-1. 登录页
-
-   ![1625049060417](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049060417.png)
-
-2. 管理员首页
-
-   ![1625049117889](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049117889.png)
-
-3. 用户管理
-
-   ![1625049197844](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049197844.png)
-
-4. 图书管理
-
-   ![1625049259432](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049259432.png)
-
-5. 借阅规则
-
-   ![1625049322835](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049322835.png)
-
-6. 图书统计
-
-   ![1625049372965](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049372965.png)
-
-7. 个人中心
-
-   ![1625049361338](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049361338.png)
-
-8. 用户首页
-
-   ![1625049474397](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049474397.png)
-
-9. 借阅记录
-
-   ![1625049533198](https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/%E6%BA%90%E7%A0%81%E4%BB%8B%E7%BB%8D%E5%9B%BE/1625049533198.png)
-
-   
 
