@@ -56,20 +56,20 @@ function onloadFile(){
 		$ = layui.jquery;
 	})
 	var cos = new COS({
-     SecretId: 'AKIDhEUTCeqlQntiHZaKnzumPowmMgkX2HFw',
-     SecretKey: 'RaU7TYNwHL8etrYz92ez3rOedLlumOjn',
+     SecretId: 'AKIDrXy81cx1oKaZHirjzyg8JEsGNDm34oHT',
+     SecretKey: 'xe4C4g14qLZWBaiZ8SVHm0xd290atvgA',
 	 })
 		cos.putObject({
 	    Bucket: 'library-management-1305004688',  
-	    Region: 'ap-guangzhou',     
+	    Region: 'ap-nanjing',     
 	    Key: name,
 	    StorageClass: 'STANDARD',
 	    Body: selectedFile, // 上传文件对象
 	    onProgress: function(progressData) {
-	        //console.log(JSON.stringify(progressData));//上传文件数据
+	        console.log(JSON.stringify(progressData));//上传文件数据
 	    }
 	}, function(err, data) {
-	    //console.log(err || data);
+	    console.log(err || data);
 	    layer.msg("上传成功", {icon: 1,time: 1000});
 	    document.getElementById("url").value = "http://"+data.Location;
 	    console.log(document.getElementById("url").value);//可以拿到文件地址

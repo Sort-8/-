@@ -39,7 +39,7 @@ function tableRender(table) {
 			, { field: 'name', width: 230, title: '图书名称' }
 			, {
 				field: 'url', width: 150, title: '图片',
-				templet: '<div><img src="{{d.url}}" style=" height:100px;" onclick="showBigImage(this)""></div>'
+				templet: '<div><img src="{{d.url}}" onclick="showBigImage(this)""></div>'
 			}
 			, { field: 'author', title: '作者', width: 250 }
 			, { field: 'press', width: 250, title: '出版社' }

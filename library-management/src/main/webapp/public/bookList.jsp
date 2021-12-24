@@ -17,6 +17,10 @@
 	#operate{
 		margin-left: 280px
 	}
+	.layui-table-cell{
+	   display:table-cell;
+	   vertical-align: middle;
+ 	}
 </style>
 <body>
 	<table class="layui-hide" id="cardTable" lay-filter="formFilter"></table>

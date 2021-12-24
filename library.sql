@@ -11,7 +11,7 @@
  Target Server Version : 80024
  File Encoding         : 65001
 
- Date: 30/06/2021 18:46:25
+ Date: 24/12/2021 11:09:57
 */
 
 SET NAMES utf8mb4;
@@ -36,26 +36,17 @@ CREATE TABLE `book`  (
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
   `create_time` bigint(0) NULL DEFAULT 0 COMMENT '创建时间',
   PRIMARY KEY (`book_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES (1, '978-7-100-11968-9', '红楼梦1', '曹雪芹著 高鹗著', '商务印书馆', 4, 3, 4, 6, 1, 'https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (2, '7-5304-2130-1', '数据库系统', '臧兰', '北京科学技术出版社', 2, 3, 0, 4, 1, 'https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', '王五', 1624609038307);
-INSERT INTO `book` VALUES (3, '7-5304-2130-1', '数据库系统', '臧兰', '北京科学技术出版社', 3, 2, 0, 4, 0, 'https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (4, '978-7-5641-0769-7', 'Java and XML = Java和XML', 'McLaughlin, Brett D. Edelson, Justin', 'Southeast University Press', 9, 1, 6, 1, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (5, '978-7-100-11968-9', '红楼梦', '曹雪芹著 高鹗著', '商务印书馆', 7, 4, 7, 6, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (6, '978-7-100-11969-6', '百年孤独', '马尔克斯著 范晔译', '南海出版公司', 20, 1, 4, 2, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (7, '978-7-100-11969-6', '百年孤独', '马尔克斯著 范晔译', '南海出版公司', 4, 1, 2, 2, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (8, '978-7-5641-0769-7', '三国演义', '罗贯中', '人民文学出版社', 12, 4, 9, 4, 1, 'https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (9, '978-7-5641-0769-7', 'Java and XML = Java和XML', 'McLaughlin, Brett D. Edelson, Justin', 'Southeast University Press', 1, 1, 1, 1, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (10, '7-5304-2130-1', '数据库系统', '臧兰', '北京科学技术出版社', 1, 3, 3, 3, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', 'admin', 1623747053568);
-INSERT INTO `book` VALUES (20, '978-7-5641-0769-7', 'sofm tomas', 'McLaughlin, Brett D. Edelson, Justin', '123', 0, 5, 3, 3, 1, 'http://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1624611937702638.jpg', '王五', 1624611945637);
-INSERT INTO `book` VALUES (21, '978-7-5641-0769-7', '三国演义', '罗贯中', '人民文学出版社', 0, 1, 3, 3, 1, ' https://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1623747053568.png', '王五', 1624612343835);
-INSERT INTO `book` VALUES (23, '978-7-5641-0769-7', '红楼梦', '曹雪芹著 高鹗著', '商务印书馆', 0, 4, 2, 4, 1, 'http://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1624694938532242.jpg', '王五', 1624694954046);
-INSERT INTO `book` VALUES (24, '31123-421', '论十大关系', '毛泽东', '北京出版社', 0, 1, 0, 3, 1, 'http://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1624957359752898.jpg', '', 1624710859011);
-INSERT INTO `book` VALUES (25, '31123-421', '论十大关系', '毛泽东', '北京出版社', 0, 1, 0, 3, 1, 'http://library-management-1305004688.cos.ap-guangzhou.myqcloud.com/1624788117809434.jpg', '', 1624711038946);
+INSERT INTO `book` VALUES (2, '7-5304-2130-1', '数据库系统', '臧兰', '北京科学技术出版社', 2, 3, 0, 4, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640314892139223.jpg', '王五', 1624609038307);
+INSERT INTO `book` VALUES (4, '978-7-5641-0769-7', 'Java and XML = Java和XML', 'McLaughlin, Brett D. Edelson, Justin', 'Southeast University Press', 9, 1, 6, 1, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640314947722689.jpg', 'admin', 1623747053568);
+INSERT INTO `book` VALUES (6, '978-7-100-11969-6', '百年孤独', '马尔克斯著 范晔译', '南海出版公司', 20, 1, 4, 2, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640315011930882.jpeg', 'admin', 1623747053568);
+INSERT INTO `book` VALUES (21, '978-7-5641-0769-7', '三国演义', '罗贯中', '人民文学出版社', 0, 1, 3, 3, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640314379667616.jpeg', '王五', 1624612343835);
+INSERT INTO `book` VALUES (23, '978-7-5641-0769-7', '红楼梦', '曹雪芹著 高鹗著', '商务印书馆', 0, 4, 2, 4, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640314517811270.jpeg', '王五', 1624694954046);
+INSERT INTO `book` VALUES (26, '978-7-5641-0769-7', '论十大关系', '毛泽东', '北京出版社', 0, 5, 6, 6, 1, 'http://library-management-1305004688.cos.ap-nanjing.myqcloud.com/1640313853659257.jpg', '管理员', 1640313591738);
 
 -- ----------------------------
 -- Table structure for book_record
@@ -69,7 +60,7 @@ CREATE TABLE `book_record`  (
   `book_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '图书名称',
   `create_time` bigint(0) NULL DEFAULT 0 COMMENT '记录时间',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '图书记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '图书记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of book_record

@@ -33,7 +33,19 @@
 
 Excel文件导入导出：poi
 
-#### 软件架构
+#### 数据库设计
+
+![1640315526982](assets/1640315526982.png)
+
+#### 页面展示
+
+![首页](assets/首页.png)
+
+![用户信息](assets/用户信息.png)
+
+![用户借阅记录](assets/用户借阅记录.png)
+
+![图书管理](assets/图书管理.png)
 
 #### 安装教程
 
@@ -43,11 +55,15 @@ Excel文件导入导出：poi
 
 1. 导入数据库，数据库名称为library
 
-2. 前往src中的util包的Constant.java，如下图
+   ![1640315630168](assets/1640315630168.png)
 
-3. 修改其中的用户名和密码，如图
+   ![1640315595835](assets/1640315595835.png)
 
-4. 修改完选择WebContent中的login.jsp即可运行
+2. 前往src中的util包的Constant.java，修改为本地的用户名和密码，如下图
+
+   ![1640315671874](assets/1640315671874.png)
+
+3. 修改完选择WebContent中的login.jsp即可运行
 
 
 
