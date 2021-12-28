@@ -1,4 +1,4 @@
-<a title="Hits" target="_blank" href="https://github.com/Sort-8/library-management"><img src="https://hits.b3log.org/Sort-8/library-management.svg"></a>
+<a title="library-management" target="_blank" href="https://github.com/Sort-8/library-management"><img src="https://hits.b3log.org/Sort-8/library-management.svg"></a>
 # 图书管理系统
 
 #### 介绍
